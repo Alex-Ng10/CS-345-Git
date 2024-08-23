@@ -1,6 +1,5 @@
 package math;
 
-public class WeightedAverageCalculator
-{
+public class WeightedAverageCalculator implements Calculator {
   
 }
