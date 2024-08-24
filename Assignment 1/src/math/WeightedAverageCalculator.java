@@ -7,14 +7,16 @@ public class WeightedAverageCalculator implements Calculator {
   protected Map<String, Double> weights;
   
   public WeightedAverageCalculator() {
+	  this.denominator = 0.0;
 	  this.weights = null;
   }
   
   public WeightedAverageCalculator(Map<String, Double> weights) {
+	  this.denominator = 0.0;
 	  this.weights = weights;
   }
   
-  // Override
+  @Override 
   public LabeledDouble calculate(String resultLabel, List<LabeledDouble> data) throws SizeException {
 	  if (data == null) {
 		  throw new SizeException("Data can't be null");
@@ -23,7 +25,7 @@ public class WeightedAverageCalculator implements Calculator {
 	  double numerator = performIntermediateCalculations(data);
 	  double weightedAverage;
 	  if (denominator == 0) {
-		  weightedAverage = 0;
+		  weightedAverage = 0.0;
 	  } else {
 		  weightedAverage = numerator / denominator;
 	  }
@@ -33,11 +35,11 @@ public class WeightedAverageCalculator implements Calculator {
   }
   
   protected double performIntermediateCalculations(List<LabeledDouble> data) throws SizeException {
-	  double numerator = 0;
-	  denominator = 0;
+	  double numerator = 0.0;
 	  
 	  for (LabeledDouble labeledDouble : data) {
-		  if (labeledDouble.getValue() == null) continue;
+		  if (labeledDouble.getValue() == null) 
+			 continue;
 		  
 		  double weight;
 		  if (weights == null) {

@@ -11,6 +11,7 @@ public class ThresholdFilter implements Filter {
 		this.sign = sign;
 	}
 	
+	@Override
 	public List<LabeledDouble> apply(List<LabeledDouble> data) throws SizeException {
 		
 		if (data == null) {
@@ -22,12 +23,13 @@ public class ThresholdFilter implements Filter {
 		for (LabeledDouble item : data) {
 			boolean addList = false;
 			
-			for (int i : sign) {
-				if ( (i == 1 && item.getValue() > threshold.getValue()) ||
-					 (i == 0 && item.getValue() == threshold.getValue()) ||
-					 (i == -1 && item.getValue() < threshold.getValue()) ) {
+			for (int s : sign) {
+				if ( (s == 1 && item.getValue() > threshold.getValue())) {
 					addList = true;
-					break;
+				} else if (s == 0 && item.getValue() == threshold.getValue()) {
+					addList = true;
+				} else if (s == -1 && item.getValue() < threshold.getValue()) {
+					addList = true;
 				}
 			}
 			
