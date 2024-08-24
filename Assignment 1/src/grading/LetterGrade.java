@@ -41,7 +41,7 @@ public enum LetterGrade
     
   }
 
-  public Double GetValue() {
+  public Double getValue() {
     return points;
   }
   
