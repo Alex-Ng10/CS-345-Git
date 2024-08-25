@@ -24,11 +24,12 @@ public class WeightedAverageCalculator implements Calculator {
 	  
 	  double numerator = performIntermediateCalculations(data);
 	  double weightedAverage;
+	  
 	  if (denominator == 0) {
-		  weightedAverage = 0.0;
-	  } else {
-		  weightedAverage = numerator / denominator;
-	  }
+		  throw new IllegalArgumentException("Denominator can't be 0");
+	  } 
+	  
+	  weightedAverage = numerator / denominator;
 	  
 	  return new LabeledDouble(resultLabel, weightedAverage);
 	  
@@ -37,21 +38,26 @@ public class WeightedAverageCalculator implements Calculator {
   protected double performIntermediateCalculations(List<LabeledDouble> data) throws SizeException {
 	  double numerator = 0.0;
 	  
-	  for (LabeledDouble labeledDouble : data) {
-		  if (labeledDouble.getValue() == null) 
+	  for (LabeledDouble item : data) {
+		  if (item.getValue() == null) 
 			 continue;
 		  
+		  double value = item.getValue();
+		  String label = item.getLabel();
 		  double weight;
-		  if (weights == null) {
-			  weight = 1;
+		  
+		  
+		  if (weights != null && weights.containsKey(label)) {
+        weight = weights.get(label);	 
 		  } else {
-			  weight = weights.getOrDefault(labeledDouble.getLabel(), 0.0);
+			  weight = 1.0;
 		  }
 		  
-		  numerator += labeledDouble.getValue() * weight;
+		  numerator += value * weight;
 		  denominator += weight;
 	  }
 	  
 	  return numerator;
   }
 }
+  

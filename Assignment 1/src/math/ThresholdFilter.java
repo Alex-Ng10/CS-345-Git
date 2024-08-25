@@ -14,27 +14,23 @@ public class ThresholdFilter implements Filter {
 	@Override
 	public List<LabeledDouble> apply(List<LabeledDouble> data) throws SizeException {
 		
+		List<LabeledDouble> filteredData = new ArrayList<>();
+		
 		if (data == null) {
 			throw new SizeException("The input is null");
 		}
 		
-		List<LabeledDouble> filteredData = new ArrayList<>();
+		if (sign.length == 0) {
+			return filteredData;
+		}
 		
 		for (LabeledDouble item : data) {
-			boolean addList = false;
-			
-			for (int s : sign) {
-				if ( (s == 1 && item.getValue() > threshold.getValue())) {
-					addList = true;
-				} else if (s == 0 && item.getValue() == threshold.getValue()) {
-					addList = true;
-				} else if (s == -1 && item.getValue() < threshold.getValue()) {
-					addList = true;
-				}
-			}
-			
-			if (addList) {
-				filteredData.add(item);
+			int compare = item.compareTo(threshold);
+			for (int i : sign) {
+			  if ((i == 0 && compare == 0) || (i == -1 && compare == -1) || (i == 1 && compare == 1)) {
+			    filteredData.add(item);
+			    break;
+			  }
 			}
 		}
 		

@@ -17,7 +17,7 @@ public class WeightedTotalCalculator extends WeightedAverageCalculator {
 	public LabeledDouble calculate(String resultLabel, List<LabeledDouble> data) throws IllegalArgumentException, SizeException {
 		
 		if (data == null) {
-			throw new IllegalArgumentException ("Result label can't be null");
+			throw new IllegalArgumentException("Result label can't be null");
 		}
 		
 		double total = performIntermediateCalculations(data);
