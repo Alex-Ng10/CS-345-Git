@@ -8,7 +8,7 @@ public enum LetterGrade
   DPLUS("D+", 1.3),
   CMINUS("C-", 1.7),
   C("C", 2.0),
-  CPLUS("C", 2.3),
+  CPLUS("C+", 2.3),
   BMINUS("B-", 2.7),
   B("B", 3.0),
   BPLUS("B+", 3.3),

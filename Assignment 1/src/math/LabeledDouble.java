@@ -1,5 +1,6 @@
 package math;
 
+
 final public class LabeledDouble {
   private final Double value;
   private final String label;
