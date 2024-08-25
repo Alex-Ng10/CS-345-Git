@@ -5,10 +5,12 @@ final public class LabeledDouble {
   private final String label;
   
   public LabeledDouble(String label) {
-    this(label, 0.0);
+    
     if (label == null || label.isEmpty()) {
       throw new IllegalArgumentException("Label cannot be null or empty");
     }
+    this.label = label;
+    this.value = 0.0;
   }
   
   public LabeledDouble(String label, double value) {

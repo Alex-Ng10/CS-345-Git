@@ -39,8 +39,9 @@ public class WeightedAverageCalculator implements Calculator {
 	  double numerator = 0.0;
 	  
 	  for (LabeledDouble item : data) {
-		  if (item.getValue() == null) 
+		  if (item.getValue() == null) {
 			 continue;
+		  }
 		  
 		  double value = item.getValue();
 		  String label = item.getLabel();

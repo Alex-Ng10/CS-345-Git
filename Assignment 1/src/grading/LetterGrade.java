@@ -47,7 +47,7 @@ public enum LetterGrade
   
   public String toString() {
     
-    return String.format("%2s (.1f)", label, points );
+    return String.format("%2s (%.1f)", label, points );
  
   }
 }
