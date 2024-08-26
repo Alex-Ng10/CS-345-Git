@@ -4,12 +4,11 @@ import grading.*;
 import java.util.*;
 import math.*;
 
-
 /**
  * The main class for the Transcriptz application.
  * 
- * This version calculates the quality points, attempted hours,
- * earned hours, and grade point average for a single individual.
+ * This version calculates the quality points, attempted hours, earned hours, and grade point
+ * average for a single individual.
  * 
  * @author Ann E. Koder, Sagacious Media
  * @version H1
@@ -22,18 +21,19 @@ public class TranscriptzH1
    * The command line arguments must contain course identifiers and grades for all of the
    * individual's courses (separated by spaces), followed by a space and the individual's name
    * 
-   * @param args The command line arguments (see above)
+   * @param args
+   *          The command line arguments (see above)
    */
   public static void main(final String[] args)
   {
-    if ((args == null) || ((args.length % 2) != 1)) 
+    if ((args == null) || ((args.length % 2) != 1))
     {
       System.err.println("You must enter course identifiers and letter grades for all of the"
           + "individual's courses (separated by spaces) followed by a space and the "
           + "individual's name.");
       System.exit(9);
     }
-  
+
     // Setup the Map containing the credits for each course
     Map<String, Double> courseTable = new JMUCourseTable();
 
@@ -43,17 +43,19 @@ public class TranscriptzH1
     // Process the command line arguments
     int n = (args.length - 1) / 2;
     List<LabeledDouble> grades = new ArrayList<LabeledDouble>();
-    for (int i=0; i<n; i++)
+    for (int i = 0; i < n; i++)
     {
-      String label = args[i*2];
-      String letter = args[i*2 + 1];
+      String label = args[i * 2];
+      String letter = args[i * 2 + 1];
       LetterGrade letterGrade = LetterGrade.fromCode(letter);
       LabeledDouble element;
-      if (letterGrade == null) element = new LabeledDouble(label, null);
-      else                     element = new LabeledDouble(label, letterGrade.getValue());
+      if (letterGrade == null)
+        element = new LabeledDouble(label, null);
+      else
+        element = new LabeledDouble(label, letterGrade.getValue());
       grades.add(element);
     }
-    
+
     // Find the courses that the individual passed
     List<LabeledDouble> passingGrades;
     try
@@ -67,10 +69,10 @@ public class TranscriptzH1
       System.out.println("The individual did not have any grades.");
       System.exit(0);
     }
-      
+
     // Create a List containing information about attempted hours
     List<LabeledDouble> attemptedHours = new ArrayList<LabeledDouble>();
-    for (LabeledDouble g: grades)
+    for (LabeledDouble g : grades)
     {
       if (g.getValue() != null)
       {
@@ -82,7 +84,7 @@ public class TranscriptzH1
 
     // Create a List containing information about earned hours
     List<LabeledDouble> earnedHours = new ArrayList<LabeledDouble>();
-    for (LabeledDouble g: passingGrades)
+    for (LabeledDouble g : passingGrades)
     {
       String label = g.getLabel();
       Double credits = courseTable.get(label);
@@ -96,10 +98,10 @@ public class TranscriptzH1
     {
       WeightedTotalCalculator wtc = new WeightedTotalCalculator(courseTable);
       qp = wtc.calculate("Quality Points", grades);
-      
+
       WeightedTotalCalculator tc = new WeightedTotalCalculator();
       ah = tc.calculate("Attempted Hours", attemptedHours);
-      
+
       eh = tc.calculate("Earned Hours", earnedHours);
     }
     catch (SizeException se)
@@ -122,14 +124,15 @@ public class TranscriptzH1
     {
       gpa = null;
     }
-    
+
     // Display the results
     System.out.println(qp.toString(true));
     System.out.println(ah.toString(true));
     System.out.println(eh.toString(true));
 
-    if (gpa != null) System.out.println(gpa.toString(true));
-    else             System.out.println("GPA: Undefined");
+    if (gpa != null)
+      System.out.println(gpa.toString(true));
+    else
+      System.out.println("GPA: Undefined");
   }
 }
-
