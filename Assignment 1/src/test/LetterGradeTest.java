@@ -72,18 +72,18 @@ class LetterGradeTest {
 //	    () -> assertEquals("B+ (3.3)", LetterGrade.BPLUS.toString()),
 //	    () -> assertEquals("A- (3.7)", LetterGrade.AMINUS.toString()),
 //	    () -> assertEquals("A (4.0)", LetterGrade.A.toString()));
-		assertEquals("F  (0,0)", LetterGrade.F.toString());
+		assertEquals("F (0.0)", LetterGrade.F.toString());
 	    assertEquals("D- (0.7)", LetterGrade.DMINUS.toString());
-	    assertEquals("D  (1.0)", LetterGrade.D.toString());
+	    assertEquals("D (1.0)", LetterGrade.D.toString());
 	    assertEquals("D+ (1.3)", LetterGrade.DPLUS.toString());
 	    assertEquals("C- (1.7)", LetterGrade.CMINUS.toString());
-	    assertEquals("C  (2.0)", LetterGrade.C.toString());
+	    assertEquals("C (2.0)", LetterGrade.C.toString());
 	    assertEquals("C+ (2.3)", LetterGrade.CPLUS.toString());
 	    assertEquals("B- (2.7)", LetterGrade.BMINUS.toString());
-	    assertEquals("B  (3.0)", LetterGrade.B.toString());
+	    assertEquals("B (3.0)", LetterGrade.B.toString());
 	    assertEquals("B+ (3.3)", LetterGrade.BPLUS.toString());
 	    assertEquals("A- (3.7)", LetterGrade.AMINUS.toString());
-	    assertEquals("A  (4.0)", LetterGrade.A.toString());
+	    assertEquals("A (4.0)", LetterGrade.A.toString());
 	}
 
 }
