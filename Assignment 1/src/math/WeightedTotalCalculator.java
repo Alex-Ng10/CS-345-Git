@@ -24,5 +24,5 @@ public class WeightedTotalCalculator extends WeightedAverageCalculator {
 		
 		return new LabeledDouble(resultLabel, total);
 		
-	}
+	} 
 }
