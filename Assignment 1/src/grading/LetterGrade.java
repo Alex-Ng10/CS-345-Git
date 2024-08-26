@@ -45,9 +45,13 @@ public enum LetterGrade
     return points;
   }
   
-  public String toString() {
-    
-    return String.format("%2s (%.1f)", label, points );
- 
+//  public String toString() {
+//    
+//    return String.format("%2s (%.1f)", label, points );
+// 
+//  }
+  public String toString()
+  {
+    return String.format(java.util.Locale.ENGLISH, "%-2s (%3.1f)", label, points.doubleValue()); // Spec 13
   }
 }
