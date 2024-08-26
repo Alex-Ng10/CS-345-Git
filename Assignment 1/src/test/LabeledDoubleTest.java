@@ -172,25 +172,25 @@ public class LabeledDoubleTest
   
   @Test
   public void testToStringNonVerboseValuePresent() {
-    LabeledDouble ld = new LabeledDouble("TestLabel", 4.0);
-    assertEquals("4.000000", ld.toString());
+    LabeledDouble ld = new LabeledDouble("TestLabel", 5.0);
+    assertEquals("5.000000", ld.toString());
   }
 
   @Test
   public void testToStringNonVerboseValueNull() {
-    LabeledDouble ld = new LabeledDouble("TestLabel", (Double) null);
+    LabeledDouble ld = new LabeledDouble("TestLabel", null);
     assertEquals("N/A", ld.toString());
   }
 
   @Test
-  public void testToStringValuePresent() {
-    LabeledDouble ld = new LabeledDouble("TestLabel", 4.0);
-    assertEquals("TestLabel: 4.000000", ld.toString(true));
+  public void testToStringVerboseValuePresent() {
+    LabeledDouble ld = new LabeledDouble("TestLabel", 5.0);
+    assertEquals("TestLabel: 5.000000", ld.toString(true));
   }
 
   @Test
-  public void testToStringValueNull() {
-    LabeledDouble ld = new LabeledDouble("TestLabel", (Double) null);
+  public void testToStringVerboseValueNull() {
+    LabeledDouble ld = new LabeledDouble("TestLabel", null);
     assertEquals("TestLabel: N/A", ld.toString(true));
   }
 }
