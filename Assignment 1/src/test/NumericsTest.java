@@ -9,6 +9,17 @@ import math.Numerics;
 class NumericsTest {
 
   @Test
+  public void testDefault() {
+    boolean num = false;
+    try {
+      new Numerics();
+    } catch (Exception e) {
+      num = true;
+    }
+    assertFalse(num);
+  }
+  
+  @Test
   public void testDoubleValueOf() {
     Double number = 5.5;
     double result = Numerics.doubleValueOf(number);
