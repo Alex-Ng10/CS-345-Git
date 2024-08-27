@@ -17,13 +17,14 @@ class WeightedTotalCalculatorTest {
   void testCalculate() {
     WeightedTotalCalculator calc = new WeightedTotalCalculator();
     List<LabeledDouble> list = new LinkedList<LabeledDouble>();
+    
     list.add(new LabeledDouble("Label", 1.0));
     list.add(new LabeledDouble("Label2", 2.0));
     
     boolean test = false;
     try {
       calc.calculate("Result", null);
-    } catch (SizeException e) {
+    } catch (IllegalArgumentException e) {
       test = true;
     }
     assertTrue(test);

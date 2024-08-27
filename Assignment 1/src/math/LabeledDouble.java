@@ -1,10 +1,25 @@
 package math;
 
-
+/**
+ * A labeled double value, representing a numerical value associated with 
+ * a specific label.
+ * 
+ * The LabeledDouble class encapsulates a double value along with a label, allowing for easy identification
+ * and comparison of numerical data within a labeled context
+ * 
+ * @author Alex Nguyen
+ */
 final public class LabeledDouble {
   private final Double value;
   private final String label;
   
+  /**
+   * Constructor that initializes the LabeledDouble with a label and 
+   * a default value of 0.0
+   * 
+   * @param label The label associated with the value
+   * @throws IllegalArgumentException If the label is null or empty
+   */
   public LabeledDouble(String label) {
     
     if (label == null || label.isEmpty()) {
@@ -14,6 +29,13 @@ final public class LabeledDouble {
     this.value = 0.0;
   }
   
+  /**
+   * Constructor that initializes the LabeledDouble with a label and a specific value.
+   * 
+   * @param label The label associated with the value
+   * @param value The numerical value
+   * @throws IllegalArgumentException If the label is null or empty
+   */
   public LabeledDouble(String label, double value) {
     if (label == null || label.isEmpty()) {
       throw new IllegalArgumentException("Label cannot be null or empty");
@@ -22,6 +44,13 @@ final public class LabeledDouble {
     this.value = value;
   }
 
+  /**
+   * Constructor that initializes the LabeledDouble with a label and a specific value, allowing nulls
+   * 
+   * @param label The label associated with the value
+   * @param value The numerical value, which may be null
+   * @throws IllegalArgumentException If the label is null or empty
+   */
   public LabeledDouble(String label, Double value) {
     if (label == null || label.isEmpty()) {
       throw new IllegalArgumentException("Label cannot be null or empty");
@@ -30,6 +59,12 @@ final public class LabeledDouble {
     this.value = value;
   }
   
+  /**
+   * Compares this LabeledDouble with another LabeledDouble based on their values
+   * 
+   * @param other The other LabeledDouble to compare with
+   * @return -1 if this value is less than the other's, 1 if greater, 0 if equal
+   */
   public int compareTo(LabeledDouble other) {
     if (this.value == null && other.value == null) {
       return 0;
@@ -43,6 +78,8 @@ final public class LabeledDouble {
   }
   
   /**
+   * Gets the value associated with this LabeledDouble
+   * 
    * @return the value
    */
   public Double getValue() {
@@ -50,12 +87,20 @@ final public class LabeledDouble {
   }
 
   /**
-   * @return the label
+   * Gets the label associated with this LabeledDouble
+   * 
+   * @return The label
    */
   public String getLabel() {
     return label;
   }
   
+  /**
+   * Returns a string representation of this LabeledDouble, optionally in a verbose format
+   * 
+   * @param verbose Whether to include the label in the string representation
+   * @return A string representing the labeled double
+   */
   public String toString(boolean verbose) {
     if (verbose) {
       if (value == null || value.isNaN()) {
@@ -72,6 +117,11 @@ final public class LabeledDouble {
     }
   }
   
+  /**
+   * Returns a string representation of this LabeledDouble in non-verbose format
+   * 
+   * @return A string representing the double value
+   */
   public String toString() {
     return toString(false);
   }
