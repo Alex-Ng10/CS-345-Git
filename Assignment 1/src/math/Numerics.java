@@ -8,8 +8,8 @@ package math;
  * 
  * @author Alex Nguyen
  */
-public class Numerics
-{
+public class Numerics 
+{ 
   public static final double DEFAULT_MISSING_VALUE = 0.0;
 
   /**

@@ -9,9 +9,9 @@ import math.Numerics;
 /**
  * Unit tests for the Numerics class.
  * 
- * This test class verifies the functionality of the Numerics utility methods,
- * including methods for converting Double objects to primitive doubles,
- * handling missing values, applying bounds, and determining the sign of an integer.
+ * This test class verifies the functionality of the Numerics utility methods, including methods for
+ * converting Double objects to primitive doubles, handling missing values, applying bounds, and
+ * determining the sign of an integer.
  * 
  * @author Alex Nguyen
  */
@@ -37,9 +37,8 @@ class NumericsTest
   }
 
   /**
-   * Test the doubleValueOf method with a non-null Double.
-   * Ensures that the method returns the correct primitive double value
-   * when a non-null Double is provided.
+   * Test the doubleValueOf method with a non-null Double. Ensures that the method returns the
+   * correct primitive double value when a non-null Double is provided.
    */
   @Test
   public void testDoubleValueOf()
@@ -57,8 +56,8 @@ class NumericsTest
   /**
    * Tests the doubleValueOf method with a specified missing value.
    * 
-   * Ensures that the method returns the correct value when a non-null Double is provided,
-   * and the missing value when the Double is null.
+   * Ensures that the method returns the correct value when a non-null Double is provided, and the
+   * missing value when the Double is null.
    */
   @Test
   public void testDoubleValueOfMissingValue()
@@ -77,8 +76,8 @@ class NumericsTest
   /**
    * Tests the doubleValueOf method with a lower bound.
    * 
-   * Ensures that the method returns the correct value when the Double is above the lower bound,
-   * and the missing value when the Double is null or below the lower bound.
+   * Ensures that the method returns the correct value when the Double is above the lower bound, and
+   * the missing value when the Double is null or below the lower bound.
    */
   @Test
   public void testDoubleValueOflowerBound()

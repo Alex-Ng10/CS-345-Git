@@ -20,7 +20,7 @@ public class SizeException extends RuntimeException
 
   /**
    * Default constructor.
-   */
+   */ 
   public SizeException()
   {
     super();
@@ -30,7 +30,7 @@ public class SizeException extends RuntimeException
    * Constructor with error message.
    * 
    * @param message
-   *          error associated with the exception
+   *         error associated with the exception
    */
   public SizeException(final String message)
   {
