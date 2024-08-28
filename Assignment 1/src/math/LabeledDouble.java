@@ -12,8 +12,8 @@ public final class LabeledDouble
 {
   private final Double value;
   private final String label;
-  private String IllegalArgument = "Non Applicable";
-  private String NullEmpty = "Label cannot be null or empty";
+  private String illegalArgument = "N/A";
+  private String nullEmpty = "Label cannot be null or empty";
 
   /**
    * Constructor that initializes the LabeledDouble with a label and a default value of 0.0.
@@ -28,7 +28,7 @@ public final class LabeledDouble
 
     if (label == null || label.isEmpty())
     {
-      throw new IllegalArgumentException(NullEmpty);
+      throw new IllegalArgumentException(nullEmpty);
     }
     this.label = label;
     this.value = 0.0;
@@ -48,7 +48,7 @@ public final class LabeledDouble
   {
     if (label == null || label.isEmpty())
     {
-      throw new IllegalArgumentException(NullEmpty);
+      throw new IllegalArgumentException(nullEmpty);
     }
     this.label = label;
     this.value = value;
@@ -69,7 +69,7 @@ public final class LabeledDouble
   {
     if (label == null || label.isEmpty())
     {
-      throw new IllegalArgumentException(NullEmpty);
+      throw new IllegalArgumentException(nullEmpty);
     }
     this.label = label;
     this.value = value;
@@ -133,7 +133,7 @@ public final class LabeledDouble
     {
       if (value == null || value.isNaN())
       {
-        return String.format("%s: %s", this.label, IllegalArgument);
+        return String.format("%s: %s", this.label, illegalArgument);
       }
       else
       {
@@ -144,7 +144,7 @@ public final class LabeledDouble
     {
       if (value == null || value.isNaN())
       {
-        return String.format("%s", IllegalArgument);
+        return String.format("%s", illegalArgument);
       }
       else
       {
