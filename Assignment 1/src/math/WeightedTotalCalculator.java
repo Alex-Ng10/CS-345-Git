@@ -54,7 +54,7 @@ public class WeightedTotalCalculator extends WeightedAverageCalculator
 
     if (data == null)
     {
-      throw new IllegalArgumentException("Result label can't be null");
+      throw new SizeException("Result label can't be null");
     }
 
     double total = performIntermediateCalculations(data);

@@ -14,7 +14,7 @@ public class SizeException extends RuntimeException
 {
 
   /**
-   * 
+   * Needed.
    */
   private static final long serialVersionUID = 1L;
 

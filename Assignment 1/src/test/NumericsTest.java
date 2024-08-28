@@ -93,6 +93,12 @@ class NumericsTest
     double lowerBound2 = 5.0;
     double result2 = Numerics.doubleValueOf(number2, missingValue2, lowerBound2);
     assertEquals(missingValue2, result2);
+    
+    Double number3 = 4.0;
+    double missingValue3 = -1.0;
+    double lowerBound3 = 5.0;
+    double result3 = Numerics.doubleValueOf(number3, missingValue3, lowerBound3);
+    assertEquals(missingValue3, result3);
   }
 
   /**

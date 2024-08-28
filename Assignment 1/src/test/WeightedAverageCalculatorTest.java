@@ -1,7 +1,6 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 //import math.Calculator;
@@ -158,13 +157,13 @@ public class WeightedAverageCalculatorTest
   public void testCalculateWithMissingWeightLabel()
   {
     Map<String, Double> weights = new HashMap<>();
-    weights.put(Label1, 2.0); // Only Label1 is weighted
+    weights.put(Label1, 2.0); 
 
     WeightedAverageCalculator calc = new WeightedAverageCalculator(weights);
 
     List<LabeledDouble> list = new LinkedList<>();
-    list.add(new LabeledDouble(Label1, 4.0)); // This will have weight 2.0
-    list.add(new LabeledDouble(Label2, 3.0)); // This will have default weight 1.0
+    list.add(new LabeledDouble(Label1, 4.0));
+    list.add(new LabeledDouble(Label2, 3.0));
 
     LabeledDouble ld = calc.calculate(Label3, list);
 

@@ -8,8 +8,8 @@ import math.LabeledDouble;
 /**
  * Test class for the LabeledDouble class.
  * 
- * This class tests the constructors, comparison logic, and string representation
- * methods of the LabeledDouble class.
+ * This class tests the constructors, comparison logic, and string representation methods of the
+ * LabeledDouble class.
  * 
  * @author Alex Nguyen
  */
@@ -80,8 +80,7 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithNullLabel()
   {
-    Exception exception = assertThrows(IllegalArgumentException.class, () -> 
-    {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
       new LabeledDouble(null);
     });
     assertEquals(IllegalArg, exception.getMessage());
@@ -95,8 +94,7 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithEmptyLabel()
   {
-    Exception exception = assertThrows(IllegalArgumentException.class, () -> 
-    {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
       new LabeledDouble("");
     });
     assertEquals(IllegalArg, exception.getMessage());
@@ -118,11 +116,11 @@ public class LabeledDoubleTest
   /**
    * Tests the compareTo method when the current object's value is null.
    * 
-   * Ensures that the comparison returns -1, 
-   * indicating that the current object is less than the other.
+   * Ensures that the comparison returns -1, indicating that the current object is less than the
+   * other.
    */
   @Test
-  public void testCompareToThisValueNull()
+  public void testCompareToCurrentValueNull()
   {
     LabeledDouble ld1 = new LabeledDouble(Label1, null);
     LabeledDouble ld2 = new LabeledDouble(Label2, 5.0);
@@ -130,10 +128,25 @@ public class LabeledDoubleTest
   }
 
   /**
+   * Tests the compareTo method when the current object's value is null.
+   * 
+   * Ensures that the comparison returns -1, indicating that the current object is less than the
+   * other.
+   */
+  @Test
+  public void testCompareToThisValueNull()
+  {
+    LabeledDouble ld1 = new LabeledDouble(Label1, null);
+    LabeledDouble ld2 = new LabeledDouble(Label2, 5.0);
+    assertEquals(-1, ld1.compareTo(ld2));
+
+  }
+
+  /**
    * Tests the compareTo method when the other object's value is null.
    * 
-   * Ensures that the comparison returns 1, 
-   * indicating that the current object is greater than the other.
+   * Ensures that the comparison returns 1, indicating that the current object is greater than the
+   * other.
    */
   @Test
   public void testCompareToOtherValueNull()
@@ -160,8 +173,8 @@ public class LabeledDoubleTest
   /**
    * Tests the LabeledDouble constructor with a string label and a double value.
    * 
-   * This test ensures that valid labels and values are accepted, 
-   * and that null and empty labels are correctly rejected.
+   * This test ensures that valid labels and values are accepted, and that null and empty labels are
+   * correctly rejected.
    */
   @Test
   public void testLabeledDoubleStringdoubleValue()
@@ -214,8 +227,8 @@ public class LabeledDoubleTest
   /**
    * Tests the LabeledDouble constructor with a string label and a Double object.
    * 
-   * This test ensures that valid labels and Double objects are accepted, 
-   * and that null and empty labels are correctly rejected.
+   * This test ensures that valid labels and Double objects are accepted, and that null and empty
+   * labels are correctly rejected.
    */
   @Test
   public void testLabeledDoubleDoubleValue()
@@ -243,7 +256,7 @@ public class LabeledDoubleTest
       flag = true;
     }
     assertFalse(flag);
-    
+
     try
     {
       new LabeledDouble(A, Double.valueOf(4.0));
@@ -308,27 +321,33 @@ public class LabeledDoubleTest
   {
     LabeledDouble ld = new LabeledDouble(TestLabel, null);
     assertEquals("N/A", ld.toString());
+
+    LabeledDouble ld2 = new LabeledDouble(TestLabel, Double.NaN);
+    assertEquals("N/A", ld2.toString());
   }
 
   /**
-   * Tests the toString method (verbose) when the value is present.
-   * Ensures that the correct label and value are returned as a string.
+   * Tests the toString method (verbose) when the value is present. Ensures that the correct label
+   * and value are returned as a string.
    */
   @Test
   public void testToStringVerboseValuePresent()
-  { 
+  {
     LabeledDouble ld = new LabeledDouble(TestLabel, 5.0);
     assertEquals("TestLabel: 5.000000", ld.toString(true));
   }
 
   /**
-   * Tests the toString method (verbose) when the value is null.
-   * Ensures that the correct label and "N/A" are returned as a string.
+   * Tests the toString method (verbose) when the value is null. Ensures that the correct label and
+   * "N/A" are returned as a string.
    */
   @Test
   public void testToStringVerboseValueNull()
   {
     LabeledDouble ld = new LabeledDouble(TestLabel, null);
     assertEquals("TestLabel: N/A", ld.toString(true));
+
+    LabeledDouble ld2 = new LabeledDouble(TestLabel, Double.NaN);
+    assertEquals("TestLabel: N/A", ld2.toString(true));
   }
 }
