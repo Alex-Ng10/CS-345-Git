@@ -13,16 +13,19 @@ import java.io.PrintStream;
 public class TranscriptzH1Test
 {
 
+  
   private final ByteArrayOutputStream outputStreamCaptor = new ByteArrayOutputStream();
 
   @BeforeEach
-  public void setUp() {
+  public void setUp()
+  {
     System.setOut(new PrintStream(outputStreamCaptor));
     System.setErr(new PrintStream(outputStreamCaptor));
-  }
+  } 
 
   @Test
-  public void testValidInput() throws Exception {
+  public void testValidInput() throws Exception
+  {
     // Test case where all courses have valid grades
     String[] args = {"CS101", "A", "MATH101", "B+", "HIST101", "C-", "John Doe"};
     TranscriptzH1.main(args);
@@ -36,7 +39,8 @@ public class TranscriptzH1Test
   }
 
   @Test
-  public void testInvalidInput() {
+  public void testInvalidInput()
+  {
     // Test case where command-line arguments are incorrect
     String[] args = {"CS101", "A", "MATH101", "John Doe"};
     TranscriptzH1.main(args);
@@ -48,7 +52,8 @@ public class TranscriptzH1Test
   }
 
   @Test
-  public void testInvalidGrade() {
+  public void testInvalidGrade()
+  {
     // Test case where a grade is invalid
     String[] args = {"CS101", "A++", "MATH101", "B+", "John Doe"};
     TranscriptzH1.main(args);
@@ -62,7 +67,8 @@ public class TranscriptzH1Test
   }
 
   @Test
-  public void testEmptyGrades() {
+  public void testEmptyGrades()
+  {
     // Test case where no grades are provided
     String[] args = {""};
     TranscriptzH1.main(args);
@@ -74,7 +80,8 @@ public class TranscriptzH1Test
   }
 
   @Test
-  public void testNoGradesPassed() {
+  public void testNoGradesPassed()
+  {
     // Test case where all grades are F
     String[] args = {"CS101", "F", "MATH101", "F", "HIST101", "F", "John Doe"};
     TranscriptzH1.main(args);
