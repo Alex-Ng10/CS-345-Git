@@ -243,6 +243,27 @@ public class LabeledDoubleTest
       flag = true;
     }
     assertFalse(flag);
+    
+    try
+    {
+      new LabeledDouble(A, Double.valueOf(4.0));
+      new LabeledDouble(AMINUS, Double.valueOf(3.7));
+      new LabeledDouble(BPLUS, Double.valueOf(3.3));
+      new LabeledDouble(B, Double.valueOf(3.0));
+      new LabeledDouble(BMINUS, Double.valueOf(2.7));
+      new LabeledDouble(CPLUS, Double.valueOf(2.3));
+      new LabeledDouble(C, Double.valueOf(2.0));
+      new LabeledDouble(CMINUS, Double.valueOf(1.7));
+      new LabeledDouble(DPLUS, Double.valueOf(1.3));
+      new LabeledDouble(D, Double.valueOf(1.0));
+      new LabeledDouble(DMINUS, Double.valueOf(0.7));
+      new LabeledDouble(F, Double.valueOf(0.0));
+    }
+    catch (IllegalArgumentException e)
+    {
+      flag = true;
+    }
+    assertFalse(flag);
 
     try
     {
@@ -295,7 +316,7 @@ public class LabeledDoubleTest
    */
   @Test
   public void testToStringVerboseValuePresent()
-  {
+  { 
     LabeledDouble ld = new LabeledDouble(TestLabel, 5.0);
     assertEquals("TestLabel: 5.000000", ld.toString(true));
   }

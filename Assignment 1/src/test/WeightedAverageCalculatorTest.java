@@ -123,6 +123,8 @@ public class WeightedAverageCalculatorTest
 
     ld = calc.calculate(Label3, list);
     assertTrue(ld.getValue().equals(1.5));
+    
+    
   }
 
 }
