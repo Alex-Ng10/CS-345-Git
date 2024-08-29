@@ -50,7 +50,7 @@ public class ThresholdFilterTest
    * Ensures that only the LabeledDouble with a value of 10.0 is included in the result.
    */
   @Test
-  void testApplyEqualThreshold() throws SizeException
+  void testApplyEqualThreshold()
   {
     List<LabeledDouble> data = new ArrayList<>();
     data.add(new LabeledDouble(Value1, 10.0));
@@ -69,7 +69,7 @@ public class ThresholdFilterTest
    * Ensures that only the LabeledDouble with a value greater than 10.0 is included in the result.
    */
   @Test
-  void testApplyGreaterThanThreshold() throws SizeException
+  void testApplyGreaterThanThreshold()
   {
     List<LabeledDouble> data = new ArrayList<>();
     data.add(new LabeledDouble(Value1, 10.0));
@@ -88,7 +88,7 @@ public class ThresholdFilterTest
    * Ensures that only the LabeledDouble with a value less than 10.0 is included in the result.
    */
   @Test
-  void testApplyLessThanThreshold() throws SizeException
+  void testApplyLessThanThreshold()
   {
     List<LabeledDouble> data = new ArrayList<>();
     data.add(new LabeledDouble(Value1, 10.0));
@@ -121,7 +121,7 @@ public class ThresholdFilterTest
    * Ensures that when no sign criteria is given, the result is an empty list.
    */
   @Test
-  void testApplyNoSignCriteria() throws SizeException
+  void testApplyNoSignCriteria()
   {
     ThresholdFilter filterNoSign = new ThresholdFilter(10.0);
 
