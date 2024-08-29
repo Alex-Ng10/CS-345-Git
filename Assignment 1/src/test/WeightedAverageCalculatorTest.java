@@ -157,7 +157,7 @@ public class WeightedAverageCalculatorTest
   public void testCalculateWithMissingWeightLabel()
   {
     Map<String, Double> weights = new HashMap<>();
-    weights.put(Label1, 2.0); 
+    weights.put(Label1, 2.0);
 
     WeightedAverageCalculator calc = new WeightedAverageCalculator(weights);
 

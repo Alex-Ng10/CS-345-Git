@@ -32,6 +32,7 @@ public class LabeledDoubleTest
   private static String D = "D";
   private static String DMINUS = "D-";
   private static String F = "F";
+  private static String NA = "N/A";
 
   /**
    * Tests the constructor with only a label.
@@ -320,10 +321,10 @@ public class LabeledDoubleTest
   public void testToStringNonVerboseValueNull()
   {
     LabeledDouble ld = new LabeledDouble(TestLabel, null);
-    assertEquals("N/A", ld.toString());
+    assertEquals(NA, ld.toString());
 
     LabeledDouble ld2 = new LabeledDouble(TestLabel, Double.NaN);
-    assertEquals("N/A", ld2.toString());
+    assertEquals(NA, ld2.toString());
   }
 
   /**

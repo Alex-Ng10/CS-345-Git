@@ -10,9 +10,9 @@ import math.LabeledDouble;
 /**
  * Unit tests for the LetterGrade enum.
  * 
- * This test class verifies the functionality of the LetterGrade enum,
- * including the methods for retrieving a grade from a code, getting the label,
- * getting the value, and converting the grade to a string representation.
+ * This test class verifies the functionality of the LetterGrade enum, including the methods for
+ * retrieving a grade from a code, getting the label, getting the value, and converting the grade to
+ * a string representation.
  * 
  * @author Alex Nguyen
  */
@@ -35,8 +35,8 @@ class LetterGradeTest
   /**
    * Tests the fromCode method.
    * 
-   * Verifies that each letter grade code returns the corresponding LetterGrade
-   * and that null code returns null
+   * Verifies that each letter grade code returns the corresponding LetterGrade and that null code
+   * returns null
    */
   @Test
   void testFromCode()
