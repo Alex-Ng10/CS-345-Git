@@ -1,4 +1,4 @@
-package math; Hello
+package math;
 
 import java.util.*;
 
