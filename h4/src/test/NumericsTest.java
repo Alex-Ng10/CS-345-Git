@@ -19,24 +19,6 @@ class NumericsTest
 {
 
   /**
-   * Ensure that the Numeric class can be instantiated without throwing exceptions.
-   */
-  @Test
-  public void testDefault()
-  {
-    boolean num = false;
-    try
-    {
-      new Numerics();
-    }
-    catch (IllegalArgumentException e)
-    {
-      num = true;
-    }
-    assertFalse(num);
-  }
-
-  /**
    * Test the doubleValueOf method with a non-null Double. Ensures that the method returns the
    * correct primitive double value when a non-null Double is provided.
    */

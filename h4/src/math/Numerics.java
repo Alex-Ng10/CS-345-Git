@@ -13,7 +13,7 @@ public class Numerics
   /**
    * Private constructor (because this is a utility class).
    */
-  public Numerics() //@Alex Modified this from private to public because of the test class
+  private Numerics() //@Alex Modified this from private to public because of the test class
   {
   }
   
