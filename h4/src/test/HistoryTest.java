@@ -23,11 +23,7 @@ import math.WeightedAverageCalculator;
  */
 class HistoryTest
 {
-  private static final String LABEL1 = "Label1";
-  private static final String LABEL2 = "Label2";
-  private static final String LABEL3 = "Label3";
 
-  private List<LabeledDouble> data;
   private Filter filterTest;
   private Calculator calculatorTest;
   History historyTest;

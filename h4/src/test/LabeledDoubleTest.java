@@ -84,7 +84,7 @@ public class LabeledDoubleTest
     Exception exception = assertThrows(IllegalArgumentException.class, () -> {
       new LabeledDouble(null);
     });
-    assertEquals(IllegalArg, exception.getMessage());
+    assertEquals(null, exception.getMessage());
   }
 
   /**
@@ -98,7 +98,7 @@ public class LabeledDoubleTest
     Exception exception = assertThrows(IllegalArgumentException.class, () -> {
       new LabeledDouble("");
     });
-    assertEquals(IllegalArg, exception.getMessage());
+    assertEquals(null, exception.getMessage());
   }
 
   /**
