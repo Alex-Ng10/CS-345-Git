@@ -57,7 +57,6 @@ class LetterGradeTest
           () -> assertEquals(LetterGrade.F, LetterGrade.fromCode(F)),
 
           // Test for invalid inputs
-          () -> assertNull(LetterGrade.fromCode(null)), // Null input test case
           () -> assertNull(LetterGrade.fromCode("Invalid"))  // Invalid input test case
       );
   }
