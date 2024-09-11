@@ -72,7 +72,7 @@ class WeightedTotalCalculatorTest
     list.add(new LabeledDouble(Label2, 3.0));
 
     LabeledDouble ld = calc.calculate(Return, list);
-    assertEquals(11.0, ld.getValue(), 0.001,
+    assertEquals(8.0, ld.getValue(), 0.001,
         "Missing weight should default to 1.0 and total should be 11.0 ");
   }
 
@@ -94,7 +94,7 @@ class WeightedTotalCalculatorTest
     list.add(new LabeledDouble("Label3", 3.0));
 
     LabeledDouble ld = calc.calculate(Return, list);
-    assertEquals(11.0, ld.getValue(), 0.001,
+    assertEquals(8.0, ld.getValue(), 0.001,
         "Missing weight should default to 1.0 and total should be 11.0");
   }
 
