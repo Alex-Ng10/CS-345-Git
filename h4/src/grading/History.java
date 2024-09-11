@@ -8,7 +8,7 @@ import math.Filter;
 import math.LabeledDouble;
 import math.SizeException;
 
-public class History
+public class History 
 {
   private String label;
   private List<LabeledDouble> data;
