@@ -22,5 +22,4 @@ public interface Calculator
   public abstract LabeledDouble calculate(final String resultLabel, 
       final List<LabeledDouble> data) 
           throws SizeException;
- 
 }
