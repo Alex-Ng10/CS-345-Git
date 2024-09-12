@@ -16,7 +16,7 @@ import math.LabeledDouble;
 public class LabeledDoubleTest
 {
 
-  private static String IllegalArg = "Label cannot be null or empty";
+  private static String labelNA = "TestLabel: N/A";
   private static String TestLabel = "TestLabel";
   private static String Label1 = "Label1";
   private static String Label2 = "Label2";
@@ -81,7 +81,8 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithNullLabel()
   {
-    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> 
+    {
       new LabeledDouble(null);
     });
     assertEquals(null, exception.getMessage());
@@ -95,7 +96,8 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithEmptyLabel()
   {
-    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> 
+    {
       new LabeledDouble("");
     });
     assertEquals(null, exception.getMessage());
@@ -346,9 +348,9 @@ public class LabeledDoubleTest
   public void testToStringVerboseValueNull()
   {
     LabeledDouble ld = new LabeledDouble(TestLabel, null);
-    assertEquals("TestLabel: N/A", ld.toString(true));
+    assertEquals(labelNA, ld.toString(true));
 
     LabeledDouble ld2 = new LabeledDouble(TestLabel, Double.NaN);
-    assertEquals("TestLabel: N/A", ld2.toString(true));
+    assertEquals(labelNA, ld2.toString(true));
   }
 }

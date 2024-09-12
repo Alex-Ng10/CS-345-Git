@@ -2,27 +2,42 @@ package grading;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.util.List;
 import math.Calculator;
 import math.Filter;
 import math.LabeledDouble;
 
+/**
+ * InputUtilities is a utility class responsible for reading data from files . and converting it
+ * into History and Cohort objects.
+ * 
+ * @author Alex Nguyen.
+ */
 public class InputUtilities
 {
-  private static LabeledDouble parseLine(String line)
+  /**
+   * Parses a line from a file to extract the course name and grade. If the grade is "N/A", a null
+   * value is stored for the grade.
+   * 
+   * @param line
+   *          The line from the file to parse.
+   * @return A LabeledDouble object representing the course and grade.
+   */
+  private static LabeledDouble parseLine(final String line)
   {
     String[] fields = line.split("\t");
-    String course = fields[0];
-    String grade = fields[1];
+    LetterGrade grade = LetterGrade.fromCode(fields[1]);
 
-    if ("N/A".equals(grade))
+    LabeledDouble element;
+
+    if (grade == null)
     {
-      return new LabeledDouble(course, null);
+      element = new LabeledDouble(fields[0], null);
     }
     else
     {
-      return new LabeledDouble(course, LetterGrade.fromCode(grade).getValue());
+      element = new LabeledDouble(fields[0], grade.getValue());
     }
+    return element;
   }
 
   /**
@@ -40,8 +55,8 @@ public class InputUtilities
    * @throws IOException
    *           if there is an issue with file reading.
    */
-  public static History readGradeHistory(String resultLabel, BufferedReader in, Filter filter,
-      Calculator calculator) throws IOException
+  public static History readGradeHistory(final String resultLabel, final BufferedReader in,
+      final Filter filter, final Calculator calculator) throws IOException
   {
     History history = new History(resultLabel, filter, calculator);
     String line;
@@ -71,20 +86,19 @@ public class InputUtilities
    * @throws IOException
    *           if there is an issue with file reading.
    */
-  public static Cohort readCohort(String resultLabel, BufferedReader[] in, Filter filter,
-      Calculator calculator) throws IOException
+  public static Cohort readCohort(final String resultLabel, final BufferedReader[] in,
+      final Filter filter, final Calculator calculator) throws IOException
   {
     Cohort cohort = new Cohort(resultLabel);
 
-    for (BufferedReader reader : in)
+    for (int i = 0; i < in.length; i++)
     {
-      if (reader != null)
+      if (in[i] != null)
       {
-        History history = readGradeHistory("GPA", reader, filter, calculator);
+        History history = readGradeHistory("GPA", in[i], filter, calculator);
         cohort.add(history);
       }
     }
-
     return cohort;
   }
 }

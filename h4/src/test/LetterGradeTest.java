@@ -41,28 +41,25 @@ class LetterGradeTest
   @Test
   void testFromCode()
   {
-      assertAll(
-          // Test for valid letter grades
-          () -> assertEquals(LetterGrade.A, LetterGrade.fromCode(A)),
-          () -> assertEquals(LetterGrade.AMINUS, LetterGrade.fromCode(AMINUS)),
-          () -> assertEquals(LetterGrade.BPLUS, LetterGrade.fromCode(BPLUS)),
-          () -> assertEquals(LetterGrade.B, LetterGrade.fromCode(B)),
-          () -> assertEquals(LetterGrade.BMINUS, LetterGrade.fromCode(BMINUS)),
-          () -> assertEquals(LetterGrade.CPLUS, LetterGrade.fromCode(CPLUS)),
-          () -> assertEquals(LetterGrade.C, LetterGrade.fromCode(C)),
-          () -> assertEquals(LetterGrade.CMINUS, LetterGrade.fromCode(CMINUS)),
-          () -> assertEquals(LetterGrade.DPLUS, LetterGrade.fromCode(DPLUS)),
-          () -> assertEquals(LetterGrade.D, LetterGrade.fromCode(D)),
-          () -> assertEquals(LetterGrade.DMINUS, LetterGrade.fromCode(DMINUS)),
-          () -> assertEquals(LetterGrade.F, LetterGrade.fromCode(F)),
+    assertAll(
+        // Test for valid letter grades
+        () -> assertEquals(LetterGrade.A, LetterGrade.fromCode(A)),
+        () -> assertEquals(LetterGrade.AMINUS, LetterGrade.fromCode(AMINUS)),
+        () -> assertEquals(LetterGrade.BPLUS, LetterGrade.fromCode(BPLUS)),
+        () -> assertEquals(LetterGrade.B, LetterGrade.fromCode(B)),
+        () -> assertEquals(LetterGrade.BMINUS, LetterGrade.fromCode(BMINUS)),
+        () -> assertEquals(LetterGrade.CPLUS, LetterGrade.fromCode(CPLUS)),
+        () -> assertEquals(LetterGrade.C, LetterGrade.fromCode(C)),
+        () -> assertEquals(LetterGrade.CMINUS, LetterGrade.fromCode(CMINUS)),
+        () -> assertEquals(LetterGrade.DPLUS, LetterGrade.fromCode(DPLUS)),
+        () -> assertEquals(LetterGrade.D, LetterGrade.fromCode(D)),
+        () -> assertEquals(LetterGrade.DMINUS, LetterGrade.fromCode(DMINUS)),
+        () -> assertEquals(LetterGrade.F, LetterGrade.fromCode(F)),
 
-          // Test for invalid inputs
-          () -> assertNull(LetterGrade.fromCode("Invalid"))  // Invalid input test case
-      );
+        // Test for invalid inputs
+        () -> assertNull(LetterGrade.fromCode("Invalid")) // Invalid input test case
+    );
   }
-
-
-
 
   /**
    * Ensure that the correct label is returned for each LetterGrade.

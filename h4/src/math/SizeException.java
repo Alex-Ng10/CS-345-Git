@@ -21,7 +21,8 @@ public class SizeException extends RuntimeException // Spec 1
   /**
    * Explicit Value Constructor.
    * 
-   * @param message   The human-readable message
+   * @param message
+   *          The human-readable message
    */
   public SizeException(final String message)
   {
