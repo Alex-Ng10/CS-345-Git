@@ -109,27 +109,27 @@ public class ThresholdFilterTest
   @Test
   void testApplyNullData()
   {
-    assertThrows(SizeException.class, () -> 
-    {
+    assertThrows(SizeException.class, () -> {
       filterEqual.apply(null);
     }, "Applying filter with null data should throw SizeException.");
   }
 
-  
   @Test
-  void testApplyNullSign() throws SizeException {
-      // Set up a filter with a null sign array
-      ThresholdFilter filterWithNullSign = new ThresholdFilter(10.0, null);
+  void testApplyNullSign() throws SizeException
+  {
+    // Set up a filter with a null sign array
+    ThresholdFilter filterWithNullSign = new ThresholdFilter(10.0, null);
 
-      // Set up test data
-      List<LabeledDouble> data = new ArrayList<>();
-      data.add(new LabeledDouble(Value1, 10.0));
-      data.add(new LabeledDouble(Value2, 15.0));
-      
-      // Apply the filter and verify the result is an empty list
-      List<LabeledDouble> result = filterWithNullSign.apply(data);
-      assertTrue(result.isEmpty(), "When sign array is null , result should be an empty list.");
+    // Set up test data
+    List<LabeledDouble> data = new ArrayList<>();
+    data.add(new LabeledDouble(Value1, 10.0));
+    data.add(new LabeledDouble(Value2, 15.0));
+
+    // Apply the filter and verify the result is an empty list
+    List<LabeledDouble> result = filterWithNullSign.apply(data);
+    assertTrue(result.isEmpty(), "When sign array is null , result should be an empty list.");
   }
+
   /**
    * Tests the apply method with no sign criteria provided.
    * 

@@ -22,9 +22,9 @@ import math.WeightedAverageCalculator;
 public class WeightedAverageCalculatorTest
 {
 
-  private static final String Label1 = "Label1";
-  private static final String Label2 = "Label2";
-  private static final String Label3 = "Label3";
+  private static String label1 = "Label1";
+  private static String label2 = "Label2";
+  private static String label3 = "Label3";
   private WeightedAverageCalculator calc;
 
   /**
@@ -92,7 +92,7 @@ public class WeightedAverageCalculatorTest
     boolean test = false;
     try
     {
-      calc.calculate(Label1, list);
+      calc.calculate(label1, list);
     }
     catch (SizeException e)
     {
@@ -104,7 +104,7 @@ public class WeightedAverageCalculatorTest
     test = false;
     try
     {
-      calc.calculate(Label1, list);
+      calc.calculate(label1, list);
     }
     catch (IllegalArgumentException e)
     {
@@ -117,10 +117,10 @@ public class WeightedAverageCalculatorTest
   public void testCalculateWithNonNullValues() throws SizeException
   {
     List<LabeledDouble> data = new ArrayList<>();
-    data.add(new LabeledDouble(Label1, 5.0));
-    data.add(new LabeledDouble(Label2, 10.0));
+    data.add(new LabeledDouble(label1, 5.0));
+    data.add(new LabeledDouble(label2, 10.0));
 
-    LabeledDouble result = calc.calculate(Label3, data);
+    LabeledDouble result = calc.calculate(label3, data);
 
     assertEquals(7.5, result.getValue(), 0.001,
         "Weighted average should be 7.5 with default weights.");
@@ -130,10 +130,10 @@ public class WeightedAverageCalculatorTest
   public void testCalculateWithNullValues() throws SizeException
   {
     List<LabeledDouble> data = new ArrayList<>();
-    data.add(new LabeledDouble(Label1, 5.0));
-    data.add(new LabeledDouble(Label2, null));
+    data.add(new LabeledDouble(label1, 5.0));
+    data.add(new LabeledDouble(label2, null));
 
-    LabeledDouble result = calc.calculate(Label3, data);
+    LabeledDouble result = calc.calculate(label3, data);
 
     assertEquals(5.0, result.getValue(), 0.001,
         "Weighted average should be 5.0 with default weights.");
@@ -148,16 +148,16 @@ public class WeightedAverageCalculatorTest
   public void testCalculateWithWeights()
   {
     Map<String, Double> weights = new HashMap<>();
-    weights.put(Label1, 2.0);
-    weights.put(Label2, 0.5);
+    weights.put(label1, 2.0);
+    weights.put(label2, 0.5);
 
     WeightedAverageCalculator calc = new WeightedAverageCalculator(weights);
 
     List<LabeledDouble> list = new LinkedList<>();
-    list.add(new LabeledDouble(Label1, 4.0));
-    list.add(new LabeledDouble(Label2, 2.0));
+    list.add(new LabeledDouble(label1, 4.0));
+    list.add(new LabeledDouble(label2, 2.0));
 
-    LabeledDouble ld = calc.calculate(Label3, list);
+    LabeledDouble ld = calc.calculate(label3, list);
 
     assertEquals(3.6, ld.getValue(), 0.001);
   }
@@ -172,15 +172,15 @@ public class WeightedAverageCalculatorTest
   public void testCalculateWithMissingWeightLabel()
   {
     Map<String, Double> weights = new HashMap<>();
-    weights.put(Label1, 2.0);
+    weights.put(label1, 2.0);
 
     WeightedAverageCalculator calc = new WeightedAverageCalculator(weights);
 
     List<LabeledDouble> list = new LinkedList<>();
-    list.add(new LabeledDouble(Label1, 3.666));
-    list.add(new LabeledDouble(Label2, 3.0));
+    list.add(new LabeledDouble(label1, 3.666));
+    list.add(new LabeledDouble(label2, 3.0));
 
-    LabeledDouble ld = calc.calculate(Label3, list);
+    LabeledDouble ld = calc.calculate(label3, list);
 
     assertEquals(3.666, ld.getValue(), 0.001);
   }

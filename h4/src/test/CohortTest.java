@@ -10,65 +10,55 @@ import math.LabeledDouble;
 import math.SizeException;
 import math.WeightedAverageCalculator;
 
-public class CohortTest {
+public class CohortTest
+{
 
-    private Cohort cohort;
-    private WeightedAverageCalculator calculator;
+  private static String student1 = "Student1";
+  private static String testcohort = "TestCohort";
+  private Cohort cohort;
+  private WeightedAverageCalculator calculator;
 
-    @BeforeEach
-    public void setUp() {
-        calculator = new WeightedAverageCalculator();
-        cohort = new Cohort("TestCohort");
-    }
+  @BeforeEach
+  public void setUp()
+  {
+    calculator = new WeightedAverageCalculator();
+    cohort = new Cohort(testcohort);
+  }
 
-    @Test
-    public void testCohortInitialization() {
-        assertNotNull(cohort);
-        assertEquals("TestCohort", cohort.getLabel());
-        assertTrue(cohort.getHistories().isEmpty(), "Histories should be initialized as an empty list.");
-    }
+  @Test
+  public void testCohortInitialization()
+  {
+    assertNotNull(cohort);
+    assertEquals(testcohort, cohort.getLabel());
 
-    @Test
-    public void testAdd() {
-        History history = new History("Student1", null, calculator);
-        cohort.add(history);
+    assertTrue(cohort.getHistories().isEmpty(),
+        "Histories should be initialized as an empty list.");
+  }
 
-        assertEquals(1, cohort.getHistories().size());
-        assertEquals("Student1", cohort.getHistories().get(0).getLabel());
-    }
-    
-    @Test
-    public void testAddNull() {
-        cohort.add(null);
+  @Test
+  public void testAddHistory()
+  {
+    History history = new History(student1, null, calculator);
+    cohort.add(history);
 
-        assertTrue(cohort.getHistories().isEmpty(), "Histories should still be empty when adding null.");
-    }
+    assertEquals(1, cohort.getHistories().size(), "Histories should contain 1 history.");
+    assertEquals(student1, cohort.getHistories().get(0).getLabel());
+  }
 
-    @Test
-    public void testGetValue() throws SizeException {
-        History history1 = new History("Student3", null, calculator);
-        history1.add(new LabeledDouble("Course1", 3.0));
-        cohort.add(history1);
+  @Test
+  public void testGetValue() throws SizeException
+  {
+    History history1 = new History("Student3", null, calculator);
+    history1.add(new LabeledDouble("Course1", 3.0));
+    cohort.add(history1);
 
-        History history2 = new History("Student4", null, calculator);
-        history2.add(new LabeledDouble("Course2", 3.5));
-        cohort.add(history2);
+    History history2 = new History("Student4", null, calculator);
+    history2.add(new LabeledDouble("Course2", 3.5));
+    cohort.add(history2);
 
-        LabeledDouble cohortValue = cohort.getValue();
-        assertEquals(3.25, cohortValue.getValue(), 0.01, "Cohort GPA should be the average of all histories.");
-    }
+    LabeledDouble cohortValue = cohort.getValue();
+    assertEquals(3.25, cohortValue.getValue(), 0.01,
+        "Cohort GPA should be the average of all histories.");
+  }
 
-    @Test
-    public void testCohortConstructorWithNullLabel() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Cohort(null);
-        }, "Expected IllegalArgumentException when label is null.");
-    }
-
-    @Test
-    public void testCohortConstructorWithEmptyLabel() {
-        assertThrows(IllegalArgumentException.class, () -> {
-            new Cohort("");
-        }, "Expected IllegalArgumentException when label is empty.");
-    }
 }

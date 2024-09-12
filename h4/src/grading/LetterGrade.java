@@ -27,8 +27,10 @@ public enum LetterGrade
   /**
    * Explicit value constructor.
    * 
-   * @param label  The label for the LetterGrade
-   * @param points The numeric points associated with the LetterGrade
+   * @param label
+   *          The label for the LetterGrade
+   * @param points
+   *          The numeric points associated with the LetterGrade
    */
   private LetterGrade(final String label, final double points)
   {

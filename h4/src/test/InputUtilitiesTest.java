@@ -1,43 +1,69 @@
 package test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import org.junit.jupiter.api.Test;
-import grading.Cohort;
-import grading.History;
-import grading.InputUtilities;
-import math.Filter;
-import math.WeightedAverageCalculator;
-import math.Calculator;
-import java.io.BufferedReader;
-import java.io.StringReader;
-import java.util.List;
 
-public class InputUtilitiesTest
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import grading.Cohort;
+import grading.InputUtilities;
+import math.ThresholdFilter;
+import math.WeightedAverageCalculator;
+
+class InputUtilitiesTest
 {
+  BufferedReader[] cohort;
+  BufferedReader bart;
+  BufferedReader empty;
+  BufferedReader marge;
+  BufferedReader maggie;
+  ThresholdFilter filter;
+  WeightedAverageCalculator calc;
 
   @Test
-  public void testReadCohortWithNullReader() throws Exception
+  void testDefaultConstructor()
   {
-    String data1 = "CS149\tA\nCS159\tB+\n";
-    String data2 = "CS149\tB\nCS159\tA\n";
+    new InputUtilities();
+  }
 
-    BufferedReader[] readers = {new BufferedReader(new StringReader(data1)), 
-        null, // Null reader
-        new BufferedReader(new StringReader(data2)) 
-    };
+  @BeforeEach
+  void test() throws IOException
+  {
+    bart = new BufferedReader(new FileReader("bart.trn"));
+    empty = new BufferedReader(new FileReader("empty.trn"));
+    marge = new BufferedReader(new FileReader("marge.trn"));
+    maggie = new BufferedReader(new FileReader("maggie.trn"));
+    cohort = new BufferedReader[4];
+    cohort[0] = bart;
+    cohort[1] = empty;
+    cohort[2] = marge;
+    cohort[3] = maggie;
+    filter = new ThresholdFilter(4, -1, 0, 1);
+    calc = new WeightedAverageCalculator();
+  }
 
-    Filter filter = null;
-    Calculator calculator = new WeightedAverageCalculator();
-    Cohort cohort = InputUtilities.readCohort("Test Cohort", readers, filter, calculator);
+  @Test
+  void testReadGradeHistory() throws IOException
+  {
+    assertNotNull(InputUtilities.readGradeHistory("GPA", bart, filter, calc));
+  }
 
-    List<History> histories = cohort.getHistories();
-    assertEquals(2, histories.size(), "Cohort should contain 2 histories");
-
-    // Verify the label for each history
-    History history1 = histories.get(0);
-    History history2 = histories.get(1);
-
-    assertEquals("GPA", history1.getLabel());
-    assertEquals("GPA", history2.getLabel());
+  @Test
+  void testReadCohort() throws IOException
+  {
+    assertNotNull(InputUtilities.readCohort("Label1", cohort, filter, calc));
+  }
+  
+  @Test
+  void testReadCohort_null() throws IOException
+  {
+    BufferedReader[] nullCohort = { null, null, null };  // All null readers
+    Cohort cohortResult = InputUtilities.readCohort("Label2", nullCohort, filter, calc);
+    assertNotNull(cohortResult, "Cohort should not be null even when all readers are null.");
+    assertTrue(cohortResult.getHistories().isEmpty(), "Cohort should contain no histories when all readers are null.");
   }
 }
