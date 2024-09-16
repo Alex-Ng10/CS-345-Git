@@ -16,19 +16,13 @@ public class AbstractLabeledDouble implements LabeledDouble
   @Override
   public int compareTo(LabeledDouble other)
   {
-    if (getValue() == null && other.getValue() == null)
-    {
+    if (this.getValue() == null && other.getValue() == null)
       return 0;
-    }
-    if (getValue() == null)
-    {
+    if (this.getValue() == null)
       return -1;
-    }
     if (other.getValue() == null)
-    {
       return 1;
-    }
-    return Double.compare(getValue(), other.getValue());
+    return Double.compare(this.getValue(), other.getValue());
   }
 
   @Override
@@ -36,12 +30,15 @@ public class AbstractLabeledDouble implements LabeledDouble
   {
     return label;
   }
-  
-  public String toString(boolean verbose) {
-    
+
+  public String toString(boolean verbose)
+  {
+    return verbose ? label + ": " + getValue() : getValue() == null ? "N/A" : String.valueOf(getValue());
+  }
+
+  public String toString()
+  {
+    return toString(false);
   }
   
-  public String toString() {
-    
-  }
 }

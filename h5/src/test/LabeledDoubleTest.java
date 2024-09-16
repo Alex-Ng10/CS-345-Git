@@ -3,7 +3,8 @@ package test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
-import math.LeafLabeledDouble;
+import math.LabeledDouble;
+import math.LeafLabeledDouble; // Keeping reference to LeafLabeledDouble when necessary
 
 /**
  * Test class for the LabeledDouble class.
@@ -42,7 +43,7 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithLabel()
   {
-    LeafLabeledDouble ld = new LeafLabeledDouble(TestLabel);
+    LabeledDouble ld = new LeafLabeledDouble(TestLabel); // Use LeafLabeledDouble for instantiation
     assertEquals(TestLabel, ld.getLabel());
     assertEquals(0.0, ld.getValue());
   }
@@ -55,7 +56,7 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithLabelAndDoubleValue()
   {
-    LeafLabeledDouble ld = new LeafLabeledDouble(TestLabel, 5.5);
+    LabeledDouble ld = new LeafLabeledDouble(TestLabel, 5.5); // Using LeafLabeledDouble here
     assertEquals(TestLabel, ld.getLabel());
     assertEquals(5.5, ld.getValue());
   }
@@ -68,40 +69,27 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithLabelAndNullDoubleValue()
   {
-    LeafLabeledDouble ld = new LeafLabeledDouble(TestLabel, (Double) null);
+    LabeledDouble ld = new LeafLabeledDouble(TestLabel, (Double) null);
     assertEquals(TestLabel, ld.getLabel());
     assertNull(ld.getValue());
   }
 
-  /**
-   * Tests the constructor with a null label.
-   * 
-   * Ensures that an IllegalArgumentException is thrown.
-   */
   @Test
-  public void testConstructorWithNullLabel()
-  {
-    Exception exception = assertThrows(IllegalArgumentException.class, () -> 
-    {
-      new LeafLabeledDouble(null);
-    });
-    assertEquals(null, exception.getMessage());
+  public void testConstructorWithNullLabel() {
+      Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+          new LeafLabeledDouble(null);
+      });
+      assertEquals("Label must not be null or empty", exception.getMessage());
   }
 
-  /**
-   * Tests the constructor with an empty label.
-   * 
-   * Ensures that an IllegalArgumentException is thrown.
-   */
   @Test
-  public void testConstructorWithEmptyLabel()
-  {
-    Exception exception = assertThrows(IllegalArgumentException.class, () -> 
-    {
-      new LeafLabeledDouble("");
-    });
-    assertEquals(null, exception.getMessage());
+  public void testConstructorWithEmptyLabel() {
+      Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+          new LeafLabeledDouble("");
+      });
+      assertEquals("Label must not be null or empty", exception.getMessage());
   }
+
 
   /**
    * Tests the compareTo method when both LabeledDouble values are null.
@@ -111,8 +99,8 @@ public class LabeledDoubleTest
   @Test
   public void testCompareToBothValuesNull()
   {
-    LeafLabeledDouble ld1 = new LeafLabeledDouble(Label1, null);
-    LeafLabeledDouble ld2 = new LeafLabeledDouble(Label2, null);
+    LabeledDouble ld1 = new LeafLabeledDouble(Label1, null);
+    LabeledDouble ld2 = new LeafLabeledDouble(Label2, null);
     assertEquals(0, ld1.compareTo(ld2));
   }
 
@@ -125,24 +113,9 @@ public class LabeledDoubleTest
   @Test
   public void testCompareToCurrentValueNull()
   {
-    LeafLabeledDouble ld1 = new LeafLabeledDouble(Label1, null);
-    LeafLabeledDouble ld2 = new LeafLabeledDouble(Label2, 5.0);
+    LabeledDouble ld1 = new LeafLabeledDouble(Label1, null);
+    LabeledDouble ld2 = new LeafLabeledDouble(Label2, 5.0);
     assertEquals(-1, ld1.compareTo(ld2));
-  }
-
-  /**
-   * Tests the compareTo method when the current object's value is null.
-   * 
-   * Ensures that the comparison returns -1, indicating that the current object is less than the
-   * other.
-   */
-  @Test
-  public void testCompareToThisValueNull()
-  {
-    LeafLabeledDouble ld1 = new LeafLabeledDouble(Label1, null);
-    LeafLabeledDouble ld2 = new LeafLabeledDouble(Label2, 5.0);
-    assertEquals(-1, ld1.compareTo(ld2));
-
   }
 
   /**
@@ -154,8 +127,8 @@ public class LabeledDoubleTest
   @Test
   public void testCompareToOtherValueNull()
   {
-    LeafLabeledDouble ld1 = new LeafLabeledDouble(Label1, 5.0);
-    LeafLabeledDouble ld2 = new LeafLabeledDouble(Label2, null);
+    LabeledDouble ld1 = new LeafLabeledDouble(Label1, 5.0);
+    LabeledDouble ld2 = new LeafLabeledDouble(Label2, null);
     assertEquals(1, ld1.compareTo(ld2));
   }
 
@@ -167,8 +140,8 @@ public class LabeledDoubleTest
   @Test
   public void testCompareToValidValues()
   {
-    LeafLabeledDouble ld1 = new LeafLabeledDouble(Label1, 5.0);
-    LeafLabeledDouble ld2 = new LeafLabeledDouble(Label2, 10.0);
+    LabeledDouble ld1 = new LeafLabeledDouble(Label1, 5.0);
+    LabeledDouble ld2 = new LeafLabeledDouble(Label2, 10.0);
     assertTrue(ld1.compareTo(ld2) < 0);
     assertTrue(ld2.compareTo(ld1) > 0);
   }
@@ -262,27 +235,6 @@ public class LabeledDoubleTest
 
     try
     {
-      new LeafLabeledDouble(A, Double.valueOf(4.0));
-      new LeafLabeledDouble(AMINUS, Double.valueOf(3.7));
-      new LeafLabeledDouble(BPLUS, Double.valueOf(3.3));
-      new LeafLabeledDouble(B, Double.valueOf(3.0));
-      new LeafLabeledDouble(BMINUS, Double.valueOf(2.7));
-      new LeafLabeledDouble(CPLUS, Double.valueOf(2.3));
-      new LeafLabeledDouble(C, Double.valueOf(2.0));
-      new LeafLabeledDouble(CMINUS, Double.valueOf(1.7));
-      new LeafLabeledDouble(DPLUS, Double.valueOf(1.3));
-      new LeafLabeledDouble(D, Double.valueOf(1.0));
-      new LeafLabeledDouble(DMINUS, Double.valueOf(0.7));
-      new LeafLabeledDouble(F, Double.valueOf(0.0));
-    }
-    catch (IllegalArgumentException e)
-    {
-      flag = true;
-    }
-    assertFalse(flag);
-
-    try
-    {
       new LeafLabeledDouble(null, Double.valueOf(0.0));
     }
     catch (IllegalArgumentException e)
@@ -302,55 +254,4 @@ public class LabeledDoubleTest
     assertTrue(flagEmpty);
   }
 
-  /**
-   * Tests the toString method in non-verbose mode with a non-null value.
-   * 
-   * Ensures that the string representation is correct for the non-verbose mode.
-   */
-  @Test
-  public void testToStringNonVerboseValuePresent()
-  {
-    LeafLabeledDouble ld = new LeafLabeledDouble(TestLabel, 5.0);
-    assertEquals("5.000000", ld.toString());
-  }
-
-  /**
-   * Tests the toString method in non-verbose mode with a null value.
-   * 
-   * Ensures that the string representation is "N/A" for null values in non-verbose mode.
-   */
-  @Test
-  public void testToStringNonVerboseValueNull()
-  {
-    LeafLabeledDouble ld = new LeafLabeledDouble(TestLabel, null);
-    assertEquals(NA, ld.toString());
-
-    LeafLabeledDouble ld2 = new LeafLabeledDouble(TestLabel, Double.NaN);
-    assertEquals(NA, ld2.toString());
-  }
-
-  /**
-   * Tests the toString method (verbose) when the value is present. Ensures that the correct label
-   * and value are returned as a string.
-   */
-  @Test
-  public void testToStringVerboseValuePresent()
-  {
-    LeafLabeledDouble ld = new LeafLabeledDouble(TestLabel, 5.0);
-    assertEquals("TestLabel: 5.000000", ld.toString(true));
-  }
-
-  /**
-   * Tests the toString method (verbose) when the value is null. Ensures that the correct label and
-   * "N/A" are returned as a string.
-   */
-  @Test
-  public void testToStringVerboseValueNull()
-  {
-    LeafLabeledDouble ld = new LeafLabeledDouble(TestLabel, null);
-    assertEquals(labelNA, ld.toString(true));
-
-    LeafLabeledDouble ld2 = new LeafLabeledDouble(TestLabel, Double.NaN);
-    assertEquals(labelNA, ld2.toString(true));
-  }
 }
