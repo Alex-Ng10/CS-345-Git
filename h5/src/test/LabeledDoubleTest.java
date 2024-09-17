@@ -43,7 +43,7 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithLabel()
   {
-    LabeledDouble ld = new LeafLabeledDouble(TestLabel); // Use LeafLabeledDouble for instantiation
+    LabeledDouble ld = new LeafLabeledDouble(TestLabel);
     assertEquals(TestLabel, ld.getLabel());
     assertEquals(0.0, ld.getValue());
   }
@@ -56,7 +56,7 @@ public class LabeledDoubleTest
   @Test
   public void testConstructorWithLabelAndDoubleValue()
   {
-    LabeledDouble ld = new LeafLabeledDouble(TestLabel, 5.5); // Using LeafLabeledDouble here
+    LabeledDouble ld = new LeafLabeledDouble(TestLabel, 5.5);
     assertEquals(TestLabel, ld.getLabel());
     assertEquals(5.5, ld.getValue());
   }
@@ -75,21 +75,22 @@ public class LabeledDoubleTest
   }
 
   @Test
-  public void testConstructorWithNullLabel() {
-      Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-          new LeafLabeledDouble(null);
-      });
-      assertEquals("Label must not be null or empty", exception.getMessage());
+  public void testConstructorWithNullLabel()
+  {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      new LeafLabeledDouble(null);
+    });
+    assertEquals("Label cannot be null or empty", exception.getMessage());
   }
 
   @Test
-  public void testConstructorWithEmptyLabel() {
-      Exception exception = assertThrows(IllegalArgumentException.class, () -> {
-          new LeafLabeledDouble("");
-      });
-      assertEquals("Label must not be null or empty", exception.getMessage());
+  public void testConstructorWithEmptyLabel()
+  {
+    Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+      new LeafLabeledDouble("");
+    });
+    assertEquals("Label cannot be null or empty", exception.getMessage());
   }
-
 
   /**
    * Tests the compareTo method when both LabeledDouble values are null.
