@@ -161,7 +161,7 @@ public class LeafLabeledDouble extends AbstractLabeledDouble
    */
   public LeafLabeledDouble(String label)
   {
-    this(label, 0.0);
+    this(label, Double.valueOf(0.0));
   }
 
   public LeafLabeledDouble(String label, double value) {
