@@ -53,9 +53,9 @@ public class WeightedAverageCalculator implements Calculator
     double numerator = performIntermediateCalculations(data);
 
     if (denominator == 0.0)
-      return new LabeledDouble(resultLabel, null);
+      return new LeafLabeledDouble(resultLabel, null);
     else
-      return new LabeledDouble(resultLabel, numerator / denominator);
+      return new LeafLabeledDouble(resultLabel, numerator / denominator);
   }
 
   /**

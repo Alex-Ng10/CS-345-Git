@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import math.LabeledDouble;
 import math.LeafLabeledDouble;
 import math.SizeException;
 import math.ThresholdFilter;
@@ -52,12 +53,12 @@ public class ThresholdFilterTest
   @Test
   void testApplyEqualThreshold()
   {
-    List<LeafLabeledDouble> data = new ArrayList<>();
+    List<LabeledDouble> data = new ArrayList<>();
     data.add(new LeafLabeledDouble(Value1, 10.0));
     data.add(new LeafLabeledDouble(Value2, 15.0));
     data.add(new LeafLabeledDouble(Value3, 5.0));
 
-    List<LeafLabeledDouble> result = filterEqual.apply(data);
+    List<LabeledDouble> result = filterEqual.apply(data);
 
     assertEquals(1, result.size(), "There should be 1 item matching the threshold.");
     assertEquals(10.0, result.get(0).getValue(), "The value should be 10.0");
@@ -71,12 +72,12 @@ public class ThresholdFilterTest
   @Test
   void testApplyGreaterThanThreshold()
   {
-    List<LeafLabeledDouble> data = new ArrayList<>();
+    List<LabeledDouble> data = new ArrayList<>();
     data.add(new LeafLabeledDouble(Value1, 10.0));
     data.add(new LeafLabeledDouble(Value2, 15.0));
     data.add(new LeafLabeledDouble(Value3, 5.0));
 
-    List<LeafLabeledDouble> result = filterGreaterThan.apply(data);
+    List<LabeledDouble> result = filterGreaterThan.apply(data);
 
     assertEquals(1, result.size(), "There should be 1 item greater than the threshold.");
     assertEquals(15.0, result.get(0).getValue(), "The value should be 15.0");
@@ -90,12 +91,12 @@ public class ThresholdFilterTest
   @Test
   void testApplyLessThanThreshold()
   {
-    List<LeafLabeledDouble> data = new ArrayList<>();
+    List<LabeledDouble> data = new ArrayList<>();
     data.add(new LeafLabeledDouble(Value1, 10.0));
     data.add(new LeafLabeledDouble(Value2, 15.0));
     data.add(new LeafLabeledDouble(Value3, 5.0));
 
-    List<LeafLabeledDouble> result = filterLessThan.apply(data);
+    List<LabeledDouble> result = filterLessThan.apply(data);
 
     assertEquals(1, result.size(), "There should be 1 item less than the threshold.");
     assertEquals(5.0, result.get(0).getValue(), "The value should be 5.0");
@@ -121,12 +122,13 @@ public class ThresholdFilterTest
     ThresholdFilter filterWithNullSign = new ThresholdFilter(10.0, null);
 
     // Set up test data
-    List<LeafLabeledDouble> data = new ArrayList<>();
+    List<LabeledDouble> data = new ArrayList<>();
     data.add(new LeafLabeledDouble(Value1, 10.0));
-    data.add(new LeafLabeledDouble(Value2, 15.0));
+    data.add(new LeafLabeledDouble(Value2
+        , 15.0));
 
     // Apply the filter and verify the result is an empty list
-    List<LeafLabeledDouble> result = filterWithNullSign.apply(data);
+    List<LabeledDouble> result = filterWithNullSign.apply(data);
     assertTrue(result.isEmpty(), "When sign array is null , result should be an empty list.");
   }
 
@@ -140,12 +142,12 @@ public class ThresholdFilterTest
   {
     ThresholdFilter filterNoSign = new ThresholdFilter(10.0);
 
-    List<LeafLabeledDouble> data = new ArrayList<>();
+    List<LabeledDouble> data = new ArrayList<>();
     data.add(new LeafLabeledDouble(Value1, 10.0));
     data.add(new LeafLabeledDouble(Value2, 15.0));
     data.add(new LeafLabeledDouble(Value3, 5.0));
 
-    List<LeafLabeledDouble> result = filterNoSign.apply(data);
+    List<LabeledDouble> result = filterNoSign.apply(data);
 
     assertTrue(result.isEmpty(), "When no sign criteria is provided, the result should be empty.");
   }

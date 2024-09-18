@@ -33,7 +33,7 @@ public class ThresholdFilter implements Filter
    */
   public ThresholdFilter(final double threshold, final int... sign)
   {
-    this.threshold = new LabeledDouble("Threshold", threshold);
+    this.threshold = new LeafLabeledDouble("Threshold", threshold);
     this.sign = sign;
   }
 

@@ -50,7 +50,7 @@ public class WeightedTotalCalculator extends WeightedAverageCalculator
       throws IllegalArgumentException, SizeException
   {
     double total = super.performIntermediateCalculations(data);
-    return new LabeledDouble(resultLabel, total);
+    return new LeafLabeledDouble(resultLabel, total);
   }
 
 }

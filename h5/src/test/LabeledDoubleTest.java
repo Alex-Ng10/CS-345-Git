@@ -85,7 +85,7 @@ public class LabeledDoubleTest
     {
       new LeafLabeledDouble(null);
     });
-    assertEquals(null, exception.getMessage());
+    assertEquals("Label cannot be null or empty", exception.getMessage());
   }
 
   /**
@@ -100,7 +100,7 @@ public class LabeledDoubleTest
     {
       new LeafLabeledDouble("");
     });
-    assertEquals(null, exception.getMessage());
+    assertEquals("Label cannot be null or empty", exception.getMessage());
   }
 
   /**

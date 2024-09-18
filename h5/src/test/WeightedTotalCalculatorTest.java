@@ -8,6 +8,7 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Test;
 
+import math.LabeledDouble;
 import math.LeafLabeledDouble;
 import math.SizeException;
 import math.WeightedTotalCalculator;
@@ -67,11 +68,11 @@ class WeightedTotalCalculatorTest
     weights.put(Label1, 2.0);
 
     WeightedTotalCalculator calc = new WeightedTotalCalculator(weights);
-    List<LeafLabeledDouble> list = new LinkedList<>();
+    List<LabeledDouble> list = new LinkedList<>();
     list.add(new LeafLabeledDouble(Label1, 4.0));
     list.add(new LeafLabeledDouble(Label2, 3.0));
 
-    LeafLabeledDouble ld = calc.calculate(Return, list);
+    LabeledDouble ld = calc.calculate(Return, list);
     assertEquals(8.0, ld.getValue(), 0.001,
         "Missing weight should default to 1.0 and total should be 11.0 ");
   }
@@ -89,11 +90,11 @@ class WeightedTotalCalculatorTest
     weights.put(Label1, 2.0);
 
     WeightedTotalCalculator calc = new WeightedTotalCalculator(weights);
-    List<LeafLabeledDouble> list = new LinkedList<>();
+    List<LabeledDouble> list = new LinkedList<>();
     list.add(new LeafLabeledDouble(Label1, 4.0));
     list.add(new LeafLabeledDouble("Label3", 3.0));
 
-    LeafLabeledDouble ld = calc.calculate(Return, list);
+    LabeledDouble ld = calc.calculate(Return, list);
     assertEquals(8.0, ld.getValue(), 0.001,
         "Missing weight should default to 1.0 and total should be 11.0");
   }

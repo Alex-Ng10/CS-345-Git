@@ -5,6 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import math.LabeledDouble;
 //import math.Calculator;
 import math.LeafLabeledDouble;
 import math.SizeException;
@@ -88,7 +89,7 @@ public class WeightedAverageCalculatorTest
   {
     WeightedAverageCalculator calc = new WeightedAverageCalculator();
 
-    List<LeafLabeledDouble> list = null;
+    List<LabeledDouble> list = null;
     boolean test = false;
     try
     {
@@ -100,7 +101,7 @@ public class WeightedAverageCalculatorTest
     }
     assertTrue(test);
 
-    list = new LinkedList<LeafLabeledDouble>();
+    list = new LinkedList<LabeledDouble>();
     test = false;
     try
     {
@@ -116,11 +117,11 @@ public class WeightedAverageCalculatorTest
   @Test
   public void testCalculateWithNonNullValues() throws SizeException
   {
-    List<LeafLabeledDouble> data = new ArrayList<>();
+    List<LabeledDouble> data = new ArrayList<>();
     data.add(new LeafLabeledDouble(label1, 5.0));
     data.add(new LeafLabeledDouble(label2, 10.0));
 
-    LeafLabeledDouble result = calc.calculate(label3, data);
+    LabeledDouble result = calc.calculate(label3, data);
 
     assertEquals(7.5, result.getValue(), 0.001,
         "Weighted average should be 7.5 with default weights.");
@@ -129,11 +130,11 @@ public class WeightedAverageCalculatorTest
   @Test
   public void testCalculateWithNullValues() throws SizeException
   {
-    List<LeafLabeledDouble> data = new ArrayList<>();
+    List<LabeledDouble> data = new ArrayList<>();
     data.add(new LeafLabeledDouble(label1, 5.0));
     data.add(new LeafLabeledDouble(label2, null));
 
-    LeafLabeledDouble result = calc.calculate(label3, data);
+    LabeledDouble result = calc.calculate(label3, data);
 
     assertEquals(5.0, result.getValue(), 0.001,
         "Weighted average should be 5.0 with default weights.");
@@ -153,11 +154,11 @@ public class WeightedAverageCalculatorTest
 
     WeightedAverageCalculator calc = new WeightedAverageCalculator(weights);
 
-    List<LeafLabeledDouble> list = new LinkedList<>();
+    List<LabeledDouble> list = new LinkedList<>();
     list.add(new LeafLabeledDouble(label1, 4.0));
     list.add(new LeafLabeledDouble(label2, 2.0));
 
-    LeafLabeledDouble ld = calc.calculate(label3, list);
+    LabeledDouble ld = calc.calculate(label3, list);
 
     assertEquals(3.6, ld.getValue(), 0.001);
   }
@@ -176,11 +177,11 @@ public class WeightedAverageCalculatorTest
 
     WeightedAverageCalculator calc = new WeightedAverageCalculator(weights);
 
-    List<LeafLabeledDouble> list = new LinkedList<>();
+    List<LabeledDouble> list = new LinkedList<>();
     list.add(new LeafLabeledDouble(label1, 3.666));
     list.add(new LeafLabeledDouble(label2, 3.0));
 
-    LeafLabeledDouble ld = calc.calculate(label3, list);
+    LabeledDouble ld = calc.calculate(label3, list);
 
     assertEquals(3.666, ld.getValue(), 0.001);
   }
