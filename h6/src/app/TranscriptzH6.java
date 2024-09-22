@@ -45,40 +45,90 @@ public class TranscriptzH6 implements Runnable
     this.args = args;
   }
   
-  public void run()
-  {
+//  public void run()
+//  {
+//    setLookAndFeel();
+//    
+//    JFrame frame = new JFrame("Transcriptz");
+//    frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+//    JPanel contentPane = (JPanel)frame.getContentPane();
+//    contentPane.setLayout(new BorderLayout());
+//    
+//    // Construct the various components
+//    GPAPanel gpaPanel = new GPAPanel();
+//    String[] courses;
+//    if ((args == null) || (args.length == 0)) courses = DEFAULT_COURSES;
+//    else courses = args;
+//    CompositeGradeEntryPanel historyPanel = new CompositeGradeEntryPanel(courses, MAP);
+//    
+//    // Connect the various components
+//    gpaPanel.setCompositeGradeSubject(historyPanel); 
+//    historyPanel.addActionListener(gpaPanel);
+//    
+//    // Layout the GUI
+//    contentPane.add(historyPanel, BorderLayout.NORTH);
+//    contentPane.add(gpaPanel, BorderLayout.SOUTH);
+//    
+//    // Construct the controller
+//    TranscriptzController controller = new TranscriptzController(historyPanel);
+//    
+//    // Add the menu
+//    JMenuBar menuBar = new JMenuBar();
+//    frame.setJMenuBar(menuBar);
+//    
+//    JMenu menu;
+//    JMenuItem item;
+//    
+//    menu = new JMenu("File");
+//    menuBar.add(menu);
+//    item = new JMenuItem("Exit");
+//    item.addActionListener(controller);
+//    menu.add(item);
+//
+//    menu = new JMenu("Grades");
+//    menuBar.add(menu);
+//    item = new JMenuItem("Reset");
+//    item.addActionListener(controller);
+//    menu.add(item);
+//    
+//    
+//    frame.setSize(600, 200);
+//    frame.setVisible(true);
+//  }
+  
+  public void run() {
     setLookAndFeel();
-    
+
     JFrame frame = new JFrame("Transcriptz");
     frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    JPanel contentPane = (JPanel)frame.getContentPane();
+    JPanel contentPane = (JPanel) frame.getContentPane();
     contentPane.setLayout(new BorderLayout());
-    
+
     // Construct the various components
     GPAPanel gpaPanel = new GPAPanel();
     String[] courses;
     if ((args == null) || (args.length == 0)) courses = DEFAULT_COURSES;
     else courses = args;
     CompositeGradeEntryPanel historyPanel = new CompositeGradeEntryPanel(courses, MAP);
-    
-    // Connect the various components
-    gpaPanel.setCompositeGradeSubject(historyPanel); 
+
+    // Connect the components
+    gpaPanel.setCompositeGradeSubject(historyPanel);
     historyPanel.addActionListener(gpaPanel);
-    
+
     // Layout the GUI
     contentPane.add(historyPanel, BorderLayout.NORTH);
     contentPane.add(gpaPanel, BorderLayout.SOUTH);
-    
+
     // Construct the controller
     TranscriptzController controller = new TranscriptzController(historyPanel);
-    
+
     // Add the menu
     JMenuBar menuBar = new JMenuBar();
     frame.setJMenuBar(menuBar);
-    
+
     JMenu menu;
     JMenuItem item;
-    
+
     menu = new JMenu("File");
     menuBar.add(menu);
     item = new JMenuItem("Exit");
@@ -90,11 +140,11 @@ public class TranscriptzH6 implements Runnable
     item = new JMenuItem("Reset");
     item.addActionListener(controller);
     menu.add(item);
-    
-    
+
     frame.setSize(600, 200);
     frame.setVisible(true);
-  }
+}
+
   
   /**
    * Set the look and feel for the application.
