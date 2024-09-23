@@ -12,9 +12,9 @@ public class GradeEntryPanel extends JPanel
 
   public GradeEntryPanel(String course, double credits)
   {
-    setLayout(new FlowLayout());
+    setLayout(new BorderLayout());
 
-    gradeField = new JComboBox<>(new String[] {"N/A", "A", "B", "c", "D", "F"});
+    gradeField = new JComboBox<>(new String[] {"N/A", "A+", "A", "A-", "B+", "c", "D", "F"});
     creditLabel = new JLabel(String.valueOf(credits));
 
     add(new JLabel(course));
