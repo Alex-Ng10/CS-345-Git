@@ -1,39 +1,45 @@
 package gui;
 
+import grading.LetterGrade;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionListener;
 
-public class GradeEntryPanel extends JPanel
-{
-  private static final long serialVersionUID = 1L;
-  private JComboBox<String> gradeField;
-  private JLabel creditLabel;
+public class GradeEntryPanel extends JPanel {
+    private static final long serialVersionUID = 1L;
+    private JComboBox<String> gradeField;
+    private JLabel creditLabel;
 
-  public GradeEntryPanel(String course, double credits)
-  {
-    setLayout(new BorderLayout());
+    public GradeEntryPanel(String course, double credits) {
+        setLayout(new BorderLayout());
 
-    gradeField = new JComboBox<>(new String[] {"N/A", "A+", "A", "A-", "B+", "c", "D", "F"});
-    creditLabel = new JLabel(String.valueOf(credits));
+        // Populate JComboBox with LetterGrade values
+        gradeField = new JComboBox<>();
+        gradeField.addItem("N/A");  
+        for (LetterGrade grade : LetterGrade.values()) {
+            gradeField.addItem(grade.getLabel());
+        }
 
-    add(new JLabel(course));
-    add(gradeField);
-    add(creditLabel);
-  }
+        creditLabel = new JLabel(String.valueOf(credits));
 
-  public void addActionListener(ActionListener listener)
-  {
-    gradeField.addActionListener(listener);
-  }
+        add(new JLabel(course), BorderLayout.WEST);
+        add(gradeField, BorderLayout.CENTER);
+        add(creditLabel, BorderLayout.EAST);
+    }
 
-  public String getGrade()
-  {
-    return (String) gradeField.getSelectedItem();
-  }
+    // Add action listener for grade selection changes
+    public void addActionListener(ActionListener listener) {
+        gradeField.addActionListener(listener);
+    }
 
-  public void reset()
-  {
-    gradeField.setSelectedIndex(0);
-  }
+    // Return the selected grade as a LetterGrade object
+    public LetterGrade getGrade() {
+        String selectedGrade = (String) gradeField.getSelectedItem();
+        return LetterGrade.fromCode(selectedGrade);
+    }
+
+    // Reset grade selection to "N/A"
+    public void reset() {
+        gradeField.setSelectedItem("N/A");
+    }
 }
