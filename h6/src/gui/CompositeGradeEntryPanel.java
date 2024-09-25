@@ -1,59 +1,97 @@
 package gui;
 
-import javax.swing.*;
-import java.awt.*;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.Map;
+import javax.swing.JPanel;
+import grading.JMUCourseTable;
+import grading.LetterGrade;
 import math.CompositeLabeledDouble;
+import math.LeafLabeledDouble;
+import math.WeightedAverageCalculator;
 
+/**
+ * CompositeGradeEntryPanel is responsible for displaying multiple GradeEntryPanels for different
+ * courses, and managing the collection of grades entered.
+ */
 public class CompositeGradeEntryPanel extends JPanel implements CompositeGradeSubject
 {
   private static final long serialVersionUID = 1L;
   private String[] courses;
-  private GradeEntryPanel[] gradePanels;
+  private ArrayList<GradeEntryPanel> panels;
 
-  public CompositeGradeEntryPanel(String[] courses, Map<String, Double> map)
+  /**
+   * Constructor to initialize the panel with a set of courses and their corresponding credits. It
+   * creates GradeEntryPanels for each course.
+   * 
+   * @param courses
+   *          Array of course names to display
+   * @param map
+   *          Map of course names to their corresponding credit values
+   */
+  public CompositeGradeEntryPanel(final String[] courses, final Map<String, Double> map)
   {
-    this.courses = courses;
-    setLayout(new GridLayout(courses.length, 1));
-    gradePanels = new GradeEntryPanel[courses.length];
 
-    for (int i = 0; i < courses.length; i++)
+    panels = new ArrayList<GradeEntryPanel>();
+    this.setLayout(new GridLayout());
+
+    for (String course : courses)
     {
-      String course = courses[i];
-      double credits = map.get(course);
-      gradePanels[i] = new GradeEntryPanel(course, credits);
-      add(gradePanels[i]);
+      if (map.containsKey(course))
+      {
+        double credits = map.get(course);
+        GradeEntryPanel panel = new GradeEntryPanel(course, credits);
+        panels.add(panel);
+        this.add(panel);
+      }
     }
   }
 
-  // Adds an ActionListener to each GradeEntryPanel
-  public void addActionListener(ActionListener listener)
+  /**
+   * Adds an ActionListener to all the GradeEntryPanel components.
+   * 
+   * @param listener The ActionListener to attach
+   */
+  public void addActionListener(final ActionListener listener)
   {
-    for (GradeEntryPanel panel : gradePanels)
+    for (GradeEntryPanel panel : panels)
     {
       panel.addActionListener(listener);
     }
   }
 
-  // Resets each GradeEntryPanel
+  /**
+   * Resets all grade entries to "N/A" in all GradeEntryPanels.
+   */
   public void reset()
   {
-    for (GradeEntryPanel panel : gradePanels)
+    for (GradeEntryPanel panel : panels)
     {
       panel.reset();
     }
   }
 
-  // Constructs and returns a CompositeLabeledDouble object from grade history
+  @Override
   public CompositeLabeledDouble getGradeHistory()
   {
-    CompositeLabeledDouble history = new CompositeLabeledDouble();
-    for (GradeEntryPanel panel : gradePanels)
+    JMUCourseTable courseTable = new JMUCourseTable();
+    WeightedAverageCalculator wac = new WeightedAverageCalculator(courseTable);
+    CompositeLabeledDouble history = new CompositeLabeledDouble("history", null, wac);
+
+    for (GradeEntryPanel panel : panels)
     {
-      String grade = panel.getGrade();
-      double credit = Double.parseDouble(panel.creditLabel.getText());
-      history.add(grade, credit);
+      LetterGrade grade = LetterGrade.fromCode(panel.getGrade());
+      LeafLabeledDouble element;
+      if (grade == null)
+      {
+        element = new LeafLabeledDouble(panel.getCourse(), null);
+      }
+      else
+      {
+        element = new LeafLabeledDouble(panel.getCourse(), grade.getValue());
+      }
+      history.add(element);
     }
     return history;
   }

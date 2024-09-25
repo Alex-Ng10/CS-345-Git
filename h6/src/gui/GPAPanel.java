@@ -1,40 +1,57 @@
 package gui;
 
-import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.DecimalFormat;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
 
-import javax.swing.*;
-
-import math.CompositeLabeledDouble;
-import math.WeightedAverageCalculator;
-
+/**
+ * GPAPanel is responsible for displaying the GPA based on grade history.
+ * It listens for actions and updates the GPA label accordingly.
+ */
 public class GPAPanel extends JPanel implements ActionListener
 {
   private static final long serialVersionUID = 1L;
-  private CompositeGradeSubject subject;
-  private JLabel gpaLabel;
+  private static final String GPA = "GPA: ";
 
+  CompositeGradeSubject subject;
+  JLabel gpaLabel;
+
+  /**
+   * Constructor for GPAPanel. Initializes the GPA display with a default value of 4.000000.
+   */
   public GPAPanel()
   {
-    setLayout(new BorderLayout());
-    gpaLabel = new JLabel("GPA: 0.000000");
+    gpaLabel = new JLabel(GPA + 4.000000);
     add(gpaLabel);
   }
 
-  public void actionPerformed(ActionEvent evt)
+  /**
+   * Sets the subject that provides the grade history.
+   * 
+   * @param sub The CompositeGradeSubject providing the grade history
+   */
+  public void setCompositeGradeSubject(final CompositeGradeSubject sub)
   {
-    if (subject != null)
-    {
-      CompositeLabeledDouble history = subject.getGradeHistory();
-      WeightedAverageCalculator calculator = new WeightedAverageCalculator();
-      double gpa = calculator.calculate(history);
-      gpaLabel.setText(String.format("GPA: %.6f", gpa));
-    }
+    this.subject = sub;
   }
 
-  public void setCompositeGradeSubject(CompositeGradeSubject subj)
+  @Override
+  public void actionPerformed(final ActionEvent evt)
   {
-    this.subject = subj;
+    Double number = subject.getGradeHistory().getValue();
+    DecimalFormat decimal = new DecimalFormat();
+    decimal.setMaximumFractionDigits(6);
+    decimal.setMinimumFractionDigits(6);
+
+    if (number != null)
+    {
+      gpaLabel.setText(GPA + decimal.format(number));
+    }
+    else
+    {
+      gpaLabel.setText(GPA + decimal.format(0.0));
+    }
   }
 }
