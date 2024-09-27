@@ -36,11 +36,21 @@ public class TranscriptzController implements ActionListener
 
     itemQuit = new JMenuItem(QUIT);
     itemReset = new JMenuItem(RESET);
-
+    
+    
+    // Check this part for the alt part
+//
+//    itemQuit.setMnemonic('Q');
+//    itemReset.setMnemonic('R');
+//    
+//    itemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.SHIFT_MASK));
+//    itemReset.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.SHIFT_MASK));
+//    
     setupAccelerators();
 
     itemQuit.addActionListener(this);
     itemReset.addActionListener(this);
+    
   }
 
   /**
