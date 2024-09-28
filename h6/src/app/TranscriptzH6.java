@@ -69,7 +69,7 @@ public class TranscriptzH6 implements Runnable
     gradeEntryPanel.addActionListener(gpaPanel);
 
     // Add panels to the content pane
-    contentPane.add(gradeEntryPanel, BorderLayout.CENTER); // Changed to CENTER for better placement
+    contentPane.add(gradeEntryPanel, BorderLayout.CENTER); 
     contentPane.add(gpaPanel, BorderLayout.SOUTH);
 
     // Initialize the controller and menu bar

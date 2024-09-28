@@ -7,8 +7,8 @@ import javax.swing.JMenuItem;
 import javax.swing.KeyStroke;
 
 /**
- * TranscriptzController is responsible for managing user actions from the menu 
- * It listens for specific actions triggered by menu items and performs the corresponding logic.
+ * TranscriptzController is responsible for managing user actions from the menu It listens for
+ * specific actions triggered by menu items and performs the corresponding logic.
  */
 public class TranscriptzController implements ActionListener
 {
@@ -19,38 +19,35 @@ public class TranscriptzController implements ActionListener
   public static final String EXIT = "Exit";
 
   private CompositeGradeEntryPanel entryPanel;
-  
+
   private JMenuItem itemQuit;
   private JMenuItem itemReset;
 
   /**
-   * Constructor that initializes the controller with the grade entry panel.
-   * It also sets up the action listeners for the quit and reset menu items.
+   * Constructor that initializes the controller with the grade entry panel. It also sets up the
+   * action listeners for the quit and reset menu items.
    * 
-   * @param entryPanel The CompositeGradeEntryPanel object containing the grade panels
+   * @param entryPanel
+   *          The CompositeGradeEntryPanel object containing the grade panels
    */
   public TranscriptzController(final CompositeGradeEntryPanel entryPanel)
-  {
+  { 
     this.entryPanel = entryPanel;
     entryPanel.addActionListener(this);
 
     itemQuit = new JMenuItem(QUIT);
     itemReset = new JMenuItem(RESET);
-    
-    
+
     // Check this part for the alt part
-//
-//    itemQuit.setMnemonic('Q');
-//    itemReset.setMnemonic('R');
-//    
-//    itemQuit.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, KeyEvent.SHIFT_MASK));
-//    itemReset.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_R, KeyEvent.SHIFT_MASK));
-//    
+    itemQuit.setMnemonic('Q');
+    itemReset.setMnemonic('R');
+
+    //
     setupAccelerators();
 
     itemQuit.addActionListener(this);
     itemReset.addActionListener(this);
-    
+
   }
 
   /**
@@ -65,11 +62,12 @@ public class TranscriptzController implements ActionListener
   }
 
   /**
-   * ActionListener method that handles menu item actions.
-   * If the Quit or Exit menu item is selected, the application closes.
-   * If the Reset menu item is selected, the grade entry panel is reset.
+   * ActionListener method that handles menu item actions. If the Quit or Exit menu item is
+   * selected, the application closes. If the Reset menu item is selected, the grade entry panel is
+   * reset.
    * 
-   * @param e The ActionEvent triggered by a menu item selection
+   * @param e
+   *          The ActionEvent triggered by a menu item selection
    */
   public void actionPerformed(final ActionEvent e)
   {
