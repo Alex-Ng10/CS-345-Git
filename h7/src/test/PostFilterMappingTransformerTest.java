@@ -171,17 +171,17 @@ class PostFilterMappingTransformerTest
 
     nullFilter = null;
   }
-  //
-  // @Test
-  // void testApply_WithNonNullFilter() throws SizeException
-  // {
-  // transformer = new PostFilterMappingTransformer(passingFilter, map);
-  // List<LabeledDouble> result = transformer.apply(data);
-  //
-  // assertEquals(2, result.size());
-  // assertEquals(3.0, result.get(0).getValue());
-  // assertEquals(4.0, result.get(1).getValue());
-  // }
+
+  @Test
+  void testApply_WithNonNullFilter() throws SizeException
+  {
+    transformer = new PostFilterMappingTransformer(passingFilter, map);
+    List<LabeledDouble> result = transformer.apply(data);
+
+    assertEquals(2, result.size());
+    assertEquals(3.0, result.get(0).getValue());
+    assertEquals(4.0, result.get(1).getValue());
+  }
 
   @Test
   void testApply_WithNullFilter() throws SizeException

@@ -94,6 +94,7 @@ import java.util.Map;
  */
 public class PostFilterMappingTransformer implements Transformer
 {
+  private static String noData = "No Data";
   private Filter filter;
   private Map<String, Double> map = new HashMap<>();
 
@@ -105,7 +106,7 @@ public class PostFilterMappingTransformer implements Transformer
    * @param map
    *          The map to apply to the filtered data
    */
-  public PostFilterMappingTransformer(Filter filter, Map<String, Double> map)
+  public PostFilterMappingTransformer(final Filter filter, final Map<String, Double> map)
   {
     this.filter = filter; // Fix: Correct assignment of filter
     this.map = map;
@@ -126,7 +127,7 @@ public class PostFilterMappingTransformer implements Transformer
     if (data == null || data.size() == 0)
     {
       // Fix: checking for null first
-      throw new SizeException("No Data");
+      throw new SizeException(noData);
     }
 
     List<LabeledDouble> result = new ArrayList<>();
@@ -162,7 +163,7 @@ public class PostFilterMappingTransformer implements Transformer
     // Fix: Check result size to throw exception if no valid data
     if (result.size() == 0)
     {
-      throw new SizeException("No Data");
+      throw new SizeException(noData);
     }
 
     return result;
