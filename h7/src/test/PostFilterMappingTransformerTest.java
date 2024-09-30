@@ -227,7 +227,7 @@ class PostFilterMappingTransformerTest
   }
 
   @Test
-  void testApply_MapContainsNoKeys() throws SizeException
+  void testApply_MapContainsNoKeys()
   {
     transformer = new PostFilterMappingTransformer(null, new HashMap<>());
     assertThrows(SizeException.class, () -> {
