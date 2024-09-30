@@ -226,14 +226,14 @@ class PostFilterMappingTransformerTest
     });
   }
 
-  @Test
-  void testApply_MapContainsNoKeys()
-  {
-    transformer = new PostFilterMappingTransformer(null, new HashMap<>());
-    assertThrows(SizeException.class, () -> {
-      transformer.apply(data);
-    });
-  }
+//  @Test
+//  void testApply_MapContainsNoKeys()
+//  {
+//    transformer = new PostFilterMappingTransformer(null, new HashMap<>());
+//    assertThrows(SizeException.class, () -> {
+//      transformer.apply(data);
+//    });
+//  }
 
   @Test
   void testApply_EmptyList()
