@@ -18,7 +18,6 @@ import math.WeightedAverageCalculator;
 public class CompositeGradeEntryPanel extends JPanel implements CompositeGradeSubject
 {
   private static final long serialVersionUID = 1L;
-  private String[] courses;
   private ArrayList<GradeEntryPanel> panels;
 
   /**
