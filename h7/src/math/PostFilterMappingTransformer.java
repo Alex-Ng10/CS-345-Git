@@ -41,32 +41,20 @@ public class PostFilterMappingTransformer implements Transformer
   @Override
   public List<LabeledDouble> apply(final List<LabeledDouble> data) throws SizeException
   {
-    // Early return
-    if ((data.size() == 0) || (data == null))
+    if (data == null || data.size() == 0) // Fix: checking for null first
       throw new SizeException("No Data");
 
-    List<LabeledDouble> result = new ArrayList<LabeledDouble>();
+    List<LabeledDouble> result = new ArrayList<>();
+    List<LabeledDouble> filtered = (filter != null) ? filter.apply(data) : data;
 
-    List<LabeledDouble> filtered;
-    if (filter != null)
-      filtered = filter.apply(data);
-    else
-      filtered = data;
-
-    for (LabeledDouble element : data)
-    {
+    for (LabeledDouble element : filtered)
+    { // Fix: using filtered instead of data
       String label = element.getLabel();
-      Double value;
-      if (map == null)
-        value = element.getValue();
-      else
-        value = map.get(label);
-      LabeledDouble transformed = new LeafLabeledDouble(label, value);
-      result.add(transformed);
+      Double value = (map == null) ? null : map.get(label);
+      result.add(new LeafLabeledDouble(label, value));
     }
 
-    // Late return
-    if ((data.size() == 0) || (data == null))
+    if (result.size() == 0) // Fix: check result, not data
       throw new SizeException("No Data");
 
     return result;
