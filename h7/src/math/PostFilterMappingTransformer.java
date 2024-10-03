@@ -96,7 +96,7 @@ public class PostFilterMappingTransformer implements Transformer
 {
   private static String noData = "No Data";
   private Filter filter;
-  private Map<String, Double> map = new HashMap<>();
+  private Map<String, Double> map = new HashMap<String, Double>();
 
   /**
    * Explicit Value Constructor.
